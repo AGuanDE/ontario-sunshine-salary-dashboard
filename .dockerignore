@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter notebook checkpoints
+*.ipynb_checkpoints
+
+# Your virtual environment
+sunshine-env/
+
+# Data files
+data/raw/
+
+# Secrets / configs
+.env
+*.json
+*.key
+
+# OS/Editor junk
+.DS_Store
+.vscode/
