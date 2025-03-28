@@ -8,14 +8,14 @@ import re
 def get_column_mapping():
     """Define standard column name mappings for common variations."""
     return {
-        "job_title": ["jobtitle", "job title", "jobtitle", "position", "position title", "Job Title"],
-        "salary_paid": ["salary", "salary paid", "salarypaid", "Salary Paid", "Salary Paid "],
-        "taxable_benefits": ["benefits", "taxable benefits", "taxablebenefits", "Taxable Benefits"],
-        "first_name": ["firstname", "first name", "given name", "First Name"],
-        "last_name": ["lastname", "last name", "surname", "Last Name"],
-        "calendar_year": ["year", "fiscal year", "fiscal_year", "Calendar Year"],
-        "employer": ["organization", "organization name", "org", "Employer"],
-        "sector": ["sector name", "sectorname", "Sector", "ï»¿Sector"]  # Handle BOM character
+        "job_title": ["jobtitle", "job title", "jobtitle", "position", "position title", "Job Title", "job_title"],
+        "salary_paid": ["salary", "salary paid", "salarypaid", "Salary Paid", "Salary Paid ", "salary_paid"],
+        "taxable_benefits": ["benefits", "taxable benefits", "taxablebenefits", "Taxable Benefits", "Taxable Benefits ", "taxable_benefits"],
+        "first_name": ["firstname", "first name", "given name", "First Name", "first_name"],
+        "last_name": ["lastname", "last name", "surname", "Last Name", "last_name"],
+        "calendar_year": ["year", "fiscal year", "fiscal_year", "Calendar Year", "calendar_year"],
+        "employer": ["organization", "organization name", "org", "Employer", "employer", "employer_name"],
+        "sector": ["sector name", "sectorname", "Sector", "ï»¿Sector", "sector"]  # Handle BOM character
     }
 
 def get_job_title_mapping():
@@ -141,18 +141,14 @@ def normalize_text(text: str) -> str:
     if pd.isna(text):
         return text
     
-    # Convert to string and strip whitespace
     text = str(text).strip()
     
-    # Replace multiple spaces with single space
     text = re.sub(r'\s+', ' ', text)
     
     # Handle common special characters
     text = text.replace("‘", "'").replace("’", "'")   # Curly single quotes → straight
     text = text.replace("–", "-").replace("—", "-")   # En-dash/em-dash → hyphen
 
-    
-    # Remove any non-printable characters
     text = ''.join(char for char in text if char.isprintable())
     
     return text
@@ -257,12 +253,10 @@ def normalize_data(df: pd.DataFrame) -> pd.DataFrame:
     # Normalize numeric columns
     if "salary_paid" in df.columns:
         df["salary_paid"] = pd.to_numeric(df["salary_paid"], errors="coerce")
-        # Round to 2 decimal places
         df["salary_paid"] = df["salary_paid"].round(2)
     
     if "taxable_benefits" in df.columns:
         df["taxable_benefits"] = pd.to_numeric(df["taxable_benefits"], errors="coerce")
-        # Round to 2 decimal places
         df["taxable_benefits"] = df["taxable_benefits"].round(2)
     
     if "total_compensation" in df.columns:
@@ -352,14 +346,12 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
     # Create output paths
     year = df["calendar_year"].dropna().astype(int).mode()[0] if "calendar_year" in df.columns else "unknown"
     output_csv = output_dir / f"sunshine_cleaned_{year}.csv"
-    output_parquet = output_dir / f"sunshine_cleaned_{year}.parquet"
     schema_dir = output_dir / "schema"
     schema_file = schema_dir / f"schema_{year}.json"
 
     # Save cleaned data
     output_dir.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_csv, index=False)
-    df.to_parquet(output_parquet, index=False)
 
     # Save schema information
     schema_dir.mkdir(parents=True, exist_ok=True)
@@ -380,7 +372,6 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
         json.dump(cleaned_schema, f, indent=2)
 
     print(f"✅ Saved cleaned CSV:     {output_csv}")
-    print(f"✅ Saved cleaned Parquet: {output_parquet}")
     print(f"✅ Saved schema info:     {schema_file}")
 
 if __name__ == "__main__":
