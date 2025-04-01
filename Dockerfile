@@ -1,38 +1,23 @@
-# Build stage
-FROM python:3.12-slim as builder
+# docker/Dockerfile
+FROM apache/airflow:2.10.5-python3.8
 
-# Set working directory
-WORKDIR /app
+USER airflow
+WORKDIR /opt/airflow
 
-# Install build dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends build-essential && \
-    rm -rf /var/lib/apt/lists/*
+# Copy requirements.txt into the image
+COPY requirements.txt /tmp/requirements.txt
+COPY . /opt/airflow
 
-# Copy only requirements first to leverage Docker cache
-COPY requirements.txt .
+# Set Airflow and Python version dynamically for constraints
+ARG AIRFLOW_VERSION=2.10.5
+ARG PYTHON_VERSION=3.8
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Define the constraints URL
+# constraint file ensures all packages will be compatible
+ENV CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 
-# Final stage
-FROM python:3.12-slim
+# Only install airflow with constraints
+RUN pip install --no-cache-dir apache-airflow==${AIRFLOW_VERSION} --constraint "${CONSTRAINT_URL}"
 
-# Set working directory
-WORKDIR /app
-
-# Copy installed packages from builder
-COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
-
-# Copy application code
-COPY . .
-
-# Create non-root user
-RUN useradd -m appuser && \
-    chown -R appuser:appuser /app
-
-# Switch to non-root user
-USER appuser
-
-# Default command: clean data
-CMD ["python", "scripts/clean_data.py"]
+# THEN install your packages (without constraint file!)
+RUN pip install --no-cache-dir -r /tmp/requirements.txt

@@ -10,7 +10,7 @@ __pycache__/
 # Your virtual environment
 sunshine-env/
 
-# Data files
+# Data files / log
 data/raw/
 
 # Secrets / configs

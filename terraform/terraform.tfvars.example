@@ -1,0 +1,6 @@
+# terraform.tfvars.example
+# This file is safe to commit — it contains example values only
+
+gcp_credentials_file = "/home/YOUR_USERNAME/.ssh/path-to-your-service-account.json"
+project_id           = "your-gcp-project-id"
+region               = "us-central1"

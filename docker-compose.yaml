@@ -1,0 +1,91 @@
+x-airflow-common:
+  &airflow-common
+  build: .
+  environment:
+    &airflow-common-env
+    AIRFLOW_UID: ${AIRFLOW_UID}
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    # AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+    GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/ontario-sunshine-service-account.json
+
+  volumes:
+  - ./airflow/dags:/opt/airflow/dags
+  - ./airflow/logs:/opt/airflow/logs
+  - ./airflow/plugins:/opt/airflow/plugins
+  - ./airflow/config/airflow.cfg:/opt/airflow/config/airflow.cfg
+  - ./ontario-sunshine-service-account.json:/opt/airflow/ontario-sunshine-service-account.json
+  depends_on:
+    &airflow-common-depends-on
+    postgres:
+      condition: service_healthy
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 5s
+      retries: 5
+    restart: always
+
+  airflow-webserver:
+    <<: *airflow-common
+    entrypoint: >
+      bash -c 'mkdir -p /opt/airflow/logs && chown -R ${AIRFLOW_UID:-50000}:0 /opt/airflow/logs && exec airflow webserver'
+    command: webserver
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    restart: always
+
+  airflow-scheduler:
+    <<: *airflow-common
+    entrypoint: >
+      bash -c 'mkdir -p /opt/airflow/logs && chown -R ${AIRFLOW_UID:-50000}:0 /opt/airflow/logs && exec airflow scheduler'
+    command: scheduler
+    healthcheck:
+      test: ["CMD-SHELL", 'airflow jobs check --job-type SchedulerJob --hostname "$${HOSTNAME}"']
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    restart: always
+
+# docker-compose run --rm airflow-init is a one-time setup step that:
+# - Initializes the metadata DB
+# - Creates the admin account
+# - Cleans up after itself
+
+# You only need to re-run it if you:
+# - Wipe out your volumes (e.g., docker-compose down --volumes)
+# - Change the database backend
+# - Start from scratch
+
+  airflow-init:
+    <<: *airflow-common
+    entrypoint: >
+      bash -c 'mkdir -p /opt/airflow/logs && chown -R ${AIRFLOW_UID:-50000}:0 /opt/airflow/logs && airflow db init'
+    # entrypoint: >
+    #   bash -c 'mkdir -p /opt/airflow/logs && chown -R ${AIRFLOW_UID:-50000}:0 /opt/airflow/logs && exec bash'
+    environment:
+      <<: *airflow-common-env
+      _AIRFLOW_DB_UPGRADE: 'true'
+      _AIRFLOW_WWW_USER_CREATE: 'true'
+      _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
+      _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+
+volumes:
+  postgres-db-volume:

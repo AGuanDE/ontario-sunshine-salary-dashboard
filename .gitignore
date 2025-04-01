@@ -1,2 +1,24 @@
 sunshine-env/
 data/
+
+# Terraform state
+*.tfstate
+*.tfstate.backup
+
+# Sensitive input values
+terraform.tfvars
+*.auto.tfvars
+
+# .terraform working directory
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+# Plan files
+*.tfplan
+
+# Environment variables
+.env
+
+# ignore service account keys
+*.json
