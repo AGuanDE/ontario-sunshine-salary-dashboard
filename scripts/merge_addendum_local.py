@@ -3,6 +3,7 @@ from pathlib import Path
 import json
 from clean_salary_data import standardize_column_names, normalize_text
 
+
 def standardize_columns_only(df):
     """Light transformation to standardize column names only."""
     df_standardized, _ = standardize_column_names(df)
@@ -88,26 +89,26 @@ def load_csv_with_encoding(file_path):
     
     raise ValueError(f"Could not read file {file_path} with any of the attempted encodings: {encodings}")
 
-def merge_addendum(base_path: Path, addendum_path: Path, output_path: Path):
-    """Merge addendum changes into the base data, then clean the result."""
+def merge_addendum(salary_path: Path, addendum_path: Path, output_path: Path):
+    """Merge addendum changes into the salary data, then clean the result."""
     # Load and standardize column names only
-    print("Loading base file...")
-    base_df = load_csv_with_encoding(base_path)
-    base_df = standardize_columns_only(base_df.copy())
+    print("Loading salary file...")
+    salary_df = load_csv_with_encoding(salary_path)
+    salary_df = standardize_columns_only(salary_df.copy())
     
-    # Deduplicate base file
-    print("\nDeduplicating base file...")
-    base_df, base_dedup_stats = deduplicate_with_salary_resolution(base_df)
-    if base_dedup_stats['exact_duplicates_removed'] > 0:
-        print(f"ℹ️ Removed {base_dedup_stats['exact_duplicates_removed']} exact duplicate rows")
-    if base_dedup_stats['non_exact_duplicates_resolved'] > 0:
-        print(f"ℹ️ Resolved {base_dedup_stats['non_exact_duplicates_resolved']} duplicate entries by keeping highest compensation")
+    # Deduplicate salary file
+    print("\nDeduplicating salary file...")
+    salary_df, salary_dedup_stats = deduplicate_with_salary_resolution(salary_df)
+    if salary_dedup_stats['exact_duplicates_removed'] > 0:
+        print(f"ℹ️ Removed {salary_dedup_stats['exact_duplicates_removed']} exact duplicate rows")
+    if salary_dedup_stats['non_exact_duplicates_resolved'] > 0:
+        print(f"ℹ️ Resolved {salary_dedup_stats['non_exact_duplicates_resolved']} duplicate entries by keeping highest compensation")
 
     if not addendum_path.exists():
-        print("ℹ️ Addendum file not found. Passing base file through unchanged.")
+        print("ℹ️ Addendum file not found. Passing salary file through unchanged.")
         output_path.mkdir(parents=True, exist_ok=True)
-        year = int(base_df["calendar_year"].mode()[0])
-        base_df.to_csv(output_path / f"merged_salary_{year}_uncleaned.csv", index=False)
+        year = int(salary_df["calendar_year"].mode()[0])
+        salary_df.to_csv(output_path / f"merged_salary_{year}_uncleaned.csv", index=False)
         return
 
     # Load and standardize column names for addendum
@@ -126,12 +127,10 @@ def merge_addendum(base_path: Path, addendum_path: Path, output_path: Path):
     # Look for status column (case-insensitive)
     status_col = next((col for col in addendum_df.columns if col.lower().strip() == "status"), None)
     if not status_col:
-        print("❌ No status column found in addendum.")
-        print("Available columns:", addendum_df.columns.tolist())
-        print("ℹ️ Passing base file through unchanged.")
+        print("❌ No status column found in addendum. Passing salary file through unchanged")
         output_path.mkdir(parents=True, exist_ok=True)
-        year = int(base_df["calendar_year"].mode()[0])
-        base_df.to_csv(output_path / f"merged_salary_{year}_uncleaned.csv", index=False)
+        year = int(salary_df["calendar_year"].mode()[0])
+        salary_df.to_csv(output_path / f"merged_salary_{year}_uncleaned.csv", index=False)
         return
 
     # Split addendum by operation type
@@ -140,7 +139,7 @@ def merge_addendum(base_path: Path, addendum_path: Path, output_path: Path):
     to_change = addendum_df[addendum_df[status_col].str.lower() == 'changed'].copy()
 
     print(f"\nProcessing addendum operations:")
-    print(f"Base file rows: {len(base_df)}")
+    print(f"Salary file rows: {len(salary_df)}")
     print(f"➕ Adding {len(to_add)} rows")
     print(f"❌ Deleting {len(to_delete)} rows")
     print(f"🔄 Changing {len(to_change)} rows")
@@ -152,14 +151,14 @@ def merge_addendum(base_path: Path, addendum_path: Path, output_path: Path):
         "changes_applied": 0
     }
 
-    # Add match key to base dataframe
-    base_df["_match_key"] = base_df.apply(match_key, axis=1)
+    # Add match key to salary dataframe
+    salary_df["_match_key"] = salary_df.apply(match_key, axis=1)
     
     # Process deletions
     if not to_delete.empty:
         to_delete["_match_key"] = to_delete.apply(match_key, axis=1)
         delete_keys = set(to_delete["_match_key"])
-        base_df = base_df[~base_df["_match_key"].isin(delete_keys)]
+        salary_df = salary_df[~salary_df["_match_key"].isin(delete_keys)]
 
     # Process changes
     if not to_change.empty:
@@ -170,21 +169,21 @@ def merge_addendum(base_path: Path, addendum_path: Path, output_path: Path):
         needed_changes = []
         
         for _, change_row in to_change.iterrows():
-            matching_base_rows = base_df[base_df["_match_key"] == change_row["_match_key"]]
-            if len(matching_base_rows) > 0:
+            matching_salary_rows = salary_df[salary_df["_match_key"] == change_row["_match_key"]]
+            if len(matching_salary_rows) > 0:
                 # Check if any of the matching rows are identical
-                if any(compare_rows(change_row, base_row) for _, base_row in matching_base_rows.iterrows()):
+                if any(compare_rows(change_row, salary_row) for _, salary_row in matching_salary_rows.iterrows()):
                     skipped_changes.append(change_row)
                 else:
                     needed_changes.append(change_row)
-                    # Remove ALL matching rows from base_df
-                    base_df = base_df[base_df["_match_key"] != change_row["_match_key"]]
+                    # Remove ALL matching rows from salary_df
+                    salary_df = salary_df[salary_df["_match_key"] != change_row["_match_key"]]
             else:
                 # No matching row found, so this is a new addition
                 needed_changes.append(change_row)
         
         if skipped_changes:
-            print(f"\nℹ️ Skipping {len(skipped_changes)} changes that are identical to base data")
+            print(f"\nℹ️ Skipping {len(skipped_changes)} changes that are identical to salary data")
             skipped_df = pd.DataFrame(skipped_changes)
             output_path.mkdir(parents=True, exist_ok=True)
             skipped_df.to_csv(output_path / "skipped_changes.csv", index=False)
@@ -195,7 +194,7 @@ def merge_addendum(base_path: Path, addendum_path: Path, output_path: Path):
             # Save applied changes for review
             needed_changes_df.to_csv(output_path / "applied_changes.csv", index=False)
             # Apply the changes - old rows should already be removed above
-            base_df = pd.concat([base_df, needed_changes_df], ignore_index=True)
+            salary_df = pd.concat([salary_df, needed_changes_df], ignore_index=True)
         
         # Update metadata with final counts
         changes_metadata.update({
@@ -205,20 +204,20 @@ def merge_addendum(base_path: Path, addendum_path: Path, output_path: Path):
 
     # Process additions
     if not to_add.empty:
-        base_df = pd.concat([base_df, to_add], ignore_index=True)
+        salary_df = pd.concat([salary_df, to_add], ignore_index=True)
 
     # Drop helper columns
-    if "_match_key" in base_df.columns:
-        base_df = base_df.drop(columns="_match_key")
-    if status_col in base_df.columns:
-        base_df = base_df.drop(columns=status_col)
+    if "_match_key" in salary_df.columns:
+        salary_df = salary_df.drop(columns="_match_key")
+    if status_col in salary_df.columns:
+        salary_df = salary_df.drop(columns=status_col)
 
     # Final deduplication after all operations
     print("\nPerforming final deduplication...")
-    final_len = len(base_df)
-    base_df, final_dedup_stats = deduplicate_with_salary_resolution(base_df)
+    final_len = len(salary_df)
+    salary_df, final_dedup_stats = deduplicate_with_salary_resolution(salary_df)
     if final_dedup_stats['exact_duplicates_removed'] > 0 or final_dedup_stats['non_exact_duplicates_resolved'] > 0:
-        print(f"ℹ️ Final deduplication removed {final_len - len(base_df)} total duplicate entries")
+        print(f"ℹ️ Final deduplication removed {final_len - len(salary_df)} total duplicate entries")
         if final_dedup_stats['exact_duplicates_removed'] > 0:
             print(f"  - {final_dedup_stats['exact_duplicates_removed']} exact duplicates")
         if final_dedup_stats['non_exact_duplicates_resolved'] > 0:
@@ -230,19 +229,19 @@ def merge_addendum(base_path: Path, addendum_path: Path, output_path: Path):
         json.dump(changes_metadata, f, indent=2)
 
     # Save merged result (uncleaned)
-    year = int(base_df["calendar_year"].mode()[0])
+    year = int(salary_df["calendar_year"].mode()[0])
     output_file = output_path / f"merged_salary_{year}_uncleaned.csv"
-    base_df.to_csv(output_file, index=False)
+    salary_df.to_csv(output_file, index=False)
     print(f"\n✅ Merged file saved: {output_file}")
-    print(f"Final row count: {len(base_df)}")
+    print(f"Final row count: {len(salary_df)}")
     print("⚠️ Note: This file is not cleaned. Run clean_salary_data.py on this file to clean the data.")
 
 if __name__ == "__main__":
     import argparse
-    parser = argparse.ArgumentParser(description="Merge salary addendum into pre-cleaned base salary data")
-    parser.add_argument("--base", type=Path, required=True, help="Path to the pre-cleaned base salary CSV")
+    parser = argparse.ArgumentParser(description="Merge salary addendum into pre-cleaned salary data")
+    parser.add_argument("--salary", type=Path, required=True, help="Path to the pre-cleaned salary CSV")
     parser.add_argument("--addendum", type=Path, required=True, help="Path to the addendum CSV")
     parser.add_argument("--output", type=Path, default=Path("data/merged"), help="Output directory")
     args = parser.parse_args()
 
-    merge_addendum(args.base, args.addendum, args.output)
+    merge_addendum(args.salary, args.addendum, args.output)

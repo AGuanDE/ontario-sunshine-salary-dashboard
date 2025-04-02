@@ -6,9 +6,9 @@ import argparse
 import re
 
 def get_column_mapping():
-    """Define standard column name mappings for common variations."""
+    """Define standard column name mappings for common variations. *Consider changing to fuzzy matching for sustainability later"""
     return {
-        "job_title": ["jobtitle", "job title", "jobtitle", "position", "position title", "Job Title", "job_title"],
+        "job_title": ["jobtitle", "job title", "jobtitle", "position", "position title", "Job Title", "job_title", "Job Title "],
         "salary_paid": ["salary", "salary paid", "salarypaid", "Salary Paid", "Salary Paid ", "salary_paid"],
         "taxable_benefits": ["benefits", "taxable benefits", "taxablebenefits", "Taxable Benefits", "Taxable Benefits ", "taxable_benefits"],
         "first_name": ["firstname", "first name", "given name", "First Name", "first_name"],

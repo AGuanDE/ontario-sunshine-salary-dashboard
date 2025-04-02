@@ -2,6 +2,15 @@
 
 from google.cloud import storage
 from pathlib import Path
+import re
+
+def extract_year(filename:str) -> str:
+
+    match = re.search(r"(20\d{2}|19\d{2})", filename)
+    if match:
+        return match.group(1)
+    else:
+        raise ValueError(f"COULD NOT EXTRACT YEAR FROM FILENAME: {filename}")
 
 def upload_to_gcs(bucket_name: str, source_file_path: str, destination_blob_name: str):
     """
@@ -20,6 +29,15 @@ def upload_to_gcs(bucket_name: str, source_file_path: str, destination_blob_name
     blob.upload_from_filename(source_file_path)
     print(f"✅ Uploaded {source_file_path} to gs://{bucket_name}/{destination_blob_name}")
 
+def standardize_and_upload(folder: Path, category: str, bucket_name: str):
+    for file in folder.glob("*.csv"):
+        try:
+            year = extract_year(file.name.strip())
+            standardized_name = f"sunshine_{category}_{year}.csv"
+            destination_blob = f"raw/{category}/{standardized_name}"
+            upload_to_gcs(bucket_name, str(file), destination_blob)
+        except ValueError as e:
+            print(e)
 
 if __name__ == "__main__":
     # GCS bucket name
@@ -29,12 +47,6 @@ if __name__ == "__main__":
     salary_path = Path("/home/aguan/ontario-sunshine-salary-dashboard/data/raw/salaries")
     addendum_path = Path("/home/aguan/ontario-sunshine-salary-dashboard/data/raw/addendums")
     
-    # Upload salary data files
-    for salary_file in salary_path.glob("*.csv"):
-        destination_blob = f"raw/salaries/{salary_file.name}"
-        upload_to_gcs(bucket_name, str(salary_file), destination_blob)
-    
-    # Upload addendum data files
-    for addendum_file in addendum_path.glob("*.csv"):
-        destination_blob = f"raw/addendums/{addendum_file.name}"
-        upload_to_gcs(bucket_name, str(addendum_file), destination_blob)
+    # Upload files
+    standardize_and_upload(salary_path, category="salaries", bucket_name=bucket_name)
+    standardize_and_upload(addendum_path, category="addendums", bucket_name=bucket_name)
