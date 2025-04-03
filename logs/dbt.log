@@ -1,0 +1,205 @@
+[0m18:16:27.519403 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fcd19631510>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fcd19387210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fcd19387190>]}
+
+
+============================== 18:16:27.521534 | 8f442b9e-9e3b-4f44-8d43-5ff090fc172e ==============================
+[0m18:16:27.521534 [info ] [MainThread]: Running with dbt=1.6.18
+[0m18:16:27.521850 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'profiles_dir': '/home/aguan/.dbt', 'log_path': 'logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt init sunshine_project', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m18:16:27.522140 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse dict {'dir': PosixPath('/home/aguan/.dbt')}
+[0m18:16:27.522360 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m18:16:27.523071 [debug] [MainThread]: Starter project path: /home/aguan/ontario-sunshine-salary-dashboard/sunshine_dbt_venv/lib/python3.11/site-packages/dbt/include/starter_project
+[0m18:16:27.525791 [info ] [MainThread]: 
+Your new dbt project "sunshine_project" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m18:16:27.526107 [info ] [MainThread]: Setting up your profile.
+[0m18:20:21.342189 [info ] [MainThread]: Profile sunshine_project written to /home/aguan/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m18:20:21.342762 [debug] [MainThread]: Command `dbt init` succeeded at 18:20:21.342671 after 210.48 seconds
+[0m18:20:21.343064 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fcd19952e90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fcd1a340990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fcd197eea10>]}
+[0m18:20:21.343378 [debug] [MainThread]: Flushing usage events
+[0m18:20:47.994354 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9bac2fcd10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9bac2c4750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9bac665a90>]}
+
+
+============================== 18:20:47.996410 | 907110e4-acfa-46da-82d5-986aa8a78e3b ==============================
+[0m18:20:47.996410 [info ] [MainThread]: Running with dbt=1.6.18
+[0m18:20:47.996750 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/aguan/.dbt', 'version_check': 'True', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt debug', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m18:20:47.997053 [info ] [MainThread]: dbt version: 1.6.18
+[0m18:20:47.997271 [info ] [MainThread]: python version: 3.11.11
+[0m18:20:47.997509 [info ] [MainThread]: python path: /home/aguan/ontario-sunshine-salary-dashboard/sunshine_dbt_venv/bin/python3.11
+[0m18:20:47.997733 [info ] [MainThread]: os info: Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39
+[0m18:20:48.443354 [info ] [MainThread]: Using profiles dir at /home/aguan/.dbt
+[0m18:20:48.443716 [info ] [MainThread]: Using profiles.yml file at /home/aguan/.dbt/profiles.yml
+[0m18:20:48.443925 [info ] [MainThread]: Using dbt_project.yml file at /home/aguan/ontario-sunshine-salary-dashboard/dbt_project.yml
+[0m18:20:48.444208 [info ] [MainThread]: adapter type: bigquery
+[0m18:20:48.444410 [info ] [MainThread]: adapter version: 1.6.0
+[0m18:20:48.444644 [info ] [MainThread]: Configuration:
+[0m18:20:48.444837 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m18:20:48.445025 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m18:20:48.445234 [info ] [MainThread]: Required dependencies:
+[0m18:20:48.445438 [debug] [MainThread]: Executing "git --help"
+[0m18:20:48.447119 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:20:48.447355 [debug] [MainThread]: STDERR: "b''"
+[0m18:20:48.447603 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:20:48.447948 [info ] [MainThread]: Connection:
+[0m18:20:48.448336 [info ] [MainThread]:   method: service-account
+[0m18:20:48.448659 [info ] [MainThread]:   database: ontario-sunshine
+[0m18:20:48.448849 [info ] [MainThread]:   execution_project: ontario-sunshine
+[0m18:20:48.449022 [info ] [MainThread]:   schema: ontario-sunshine
+[0m18:20:48.449194 [info ] [MainThread]:   location: US
+[0m18:20:48.449366 [info ] [MainThread]:   priority: interactive
+[0m18:20:48.449546 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m18:20:48.449731 [info ] [MainThread]:   impersonate_service_account: None
+[0m18:20:48.449904 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m18:20:48.450076 [info ] [MainThread]:   job_retries: 1
+[0m18:20:48.450247 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m18:20:48.450420 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m18:20:48.450620 [info ] [MainThread]:   keyfile: ontario-sunshine-service-account.json
+[0m18:20:48.450804 [info ] [MainThread]:   keyfile_json: None
+[0m18:20:48.450989 [info ] [MainThread]:   timeout_seconds: 300
+[0m18:20:48.451163 [info ] [MainThread]:   token: None
+[0m18:20:48.451335 [info ] [MainThread]:   refresh_token: None
+[0m18:20:48.451512 [info ] [MainThread]:   client_id: None
+[0m18:20:48.451688 [info ] [MainThread]:   client_secret: None
+[0m18:20:48.451881 [info ] [MainThread]:   token_uri: None
+[0m18:20:48.452073 [info ] [MainThread]:   dataproc_region: None
+[0m18:20:48.452243 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m18:20:48.452413 [info ] [MainThread]:   gcs_bucket: None
+[0m18:20:48.452594 [info ] [MainThread]:   dataproc_batch: None
+[0m18:20:48.452821 [info ] [MainThread]: Registered adapter: bigquery=1.6.0
+[0m18:20:48.453177 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m18:20:48.453367 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:20:48.454324 [debug] [MainThread]: On debug: select 1 as id
+[0m18:20:49.423783 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=ontario-sunshine&j=bq:US:35f435d8-48be-4814-a50c-ffc5d3ad69ed&page=queryresults
+[0m18:20:49.749137 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m18:20:49.749561 [info ] [MainThread]: [31m1 check failed:[0m
+[0m18:20:49.749836 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </home/aguan/ontario-sunshine-salary-dashboard/dbt_project.yml> not found
+
+[0m18:20:49.750205 [debug] [MainThread]: Command `dbt debug` failed at 18:20:49.750114 after 1.76 seconds
+[0m18:20:49.750455 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m18:20:49.750695 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9babf9ced0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9bac53b190>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f9b787f7410>]}
+[0m18:20:49.750983 [debug] [MainThread]: Flushing usage events
+[0m18:45:17.913824 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc29fe43910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc29fb48b10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc29ff275d0>]}
+
+
+============================== 18:45:17.915590 | b77d7eca-5278-408b-8860-9f3986c79697 ==============================
+[0m18:45:17.915590 [info ] [MainThread]: Running with dbt=1.6.18
+[0m18:45:17.915898 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/aguan/.dbt', 'debug': 'False', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt debug', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m18:45:17.916190 [info ] [MainThread]: dbt version: 1.6.18
+[0m18:45:17.916423 [info ] [MainThread]: python version: 3.11.11
+[0m18:45:17.916662 [info ] [MainThread]: python path: /home/aguan/ontario-sunshine-salary-dashboard/sunshine_dbt_venv/bin/python3.11
+[0m18:45:17.916895 [info ] [MainThread]: os info: Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39
+[0m18:45:18.353653 [info ] [MainThread]: Using profiles dir at /home/aguan/.dbt
+[0m18:45:18.354033 [info ] [MainThread]: Using profiles.yml file at /home/aguan/.dbt/profiles.yml
+[0m18:45:18.354341 [info ] [MainThread]: Using dbt_project.yml file at /home/aguan/ontario-sunshine-salary-dashboard/dbt_project.yml
+[0m18:45:18.354669 [info ] [MainThread]: adapter type: bigquery
+[0m18:45:18.354882 [info ] [MainThread]: adapter version: 1.6.0
+[0m18:45:18.355092 [info ] [MainThread]: Configuration:
+[0m18:45:18.355285 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m18:45:18.355469 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m18:45:18.355665 [info ] [MainThread]: Required dependencies:
+[0m18:45:18.355875 [debug] [MainThread]: Executing "git --help"
+[0m18:45:18.357218 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:45:18.357463 [debug] [MainThread]: STDERR: "b''"
+[0m18:45:18.357638 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:45:18.357834 [info ] [MainThread]: Connection:
+[0m18:45:18.358042 [info ] [MainThread]:   method: service-account
+[0m18:45:18.358235 [info ] [MainThread]:   database: ontario-sunshine
+[0m18:45:18.358423 [info ] [MainThread]:   execution_project: ontario-sunshine
+[0m18:45:18.358603 [info ] [MainThread]:   schema: ontario-sunshine
+[0m18:45:18.358777 [info ] [MainThread]:   location: US
+[0m18:45:18.358952 [info ] [MainThread]:   priority: interactive
+[0m18:45:18.359137 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m18:45:18.359317 [info ] [MainThread]:   impersonate_service_account: None
+[0m18:45:18.359493 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m18:45:18.359677 [info ] [MainThread]:   job_retries: 1
+[0m18:45:18.359854 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m18:45:18.360034 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m18:45:18.360210 [info ] [MainThread]:   keyfile: ontario-sunshine-service-account.json
+[0m18:45:18.360405 [info ] [MainThread]:   keyfile_json: None
+[0m18:45:18.360581 [info ] [MainThread]:   timeout_seconds: 300
+[0m18:45:18.360756 [info ] [MainThread]:   token: None
+[0m18:45:18.360968 [info ] [MainThread]:   refresh_token: None
+[0m18:45:18.361154 [info ] [MainThread]:   client_id: None
+[0m18:45:18.361327 [info ] [MainThread]:   client_secret: None
+[0m18:45:18.361499 [info ] [MainThread]:   token_uri: None
+[0m18:45:18.361671 [info ] [MainThread]:   dataproc_region: None
+[0m18:45:18.361842 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m18:45:18.362026 [info ] [MainThread]:   gcs_bucket: None
+[0m18:45:18.362228 [info ] [MainThread]:   dataproc_batch: None
+[0m18:45:18.362490 [info ] [MainThread]: Registered adapter: bigquery=1.6.0
+[0m18:45:18.362952 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m18:45:18.363160 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:45:18.364161 [debug] [MainThread]: On debug: select 1 as id
+[0m18:45:18.912923 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=ontario-sunshine&j=bq:US:39980240-86ab-4d22-8b6c-9fe29f465ea1&page=queryresults
+[0m18:45:19.252321 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m18:45:19.252714 [info ] [MainThread]: [31m1 check failed:[0m
+[0m18:45:19.252971 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </home/aguan/ontario-sunshine-salary-dashboard/dbt_project.yml> not found
+
+[0m18:45:19.253372 [debug] [MainThread]: Command `dbt debug` failed at 18:45:19.253282 after 1.34 seconds
+[0m18:45:19.253627 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m18:45:19.253871 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc29fa1d6d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc29fcb3fd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc29fa13e50>]}
+[0m18:45:19.254167 [debug] [MainThread]: Flushing usage events
+[0m18:48:04.045400 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb522c02550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb522c00650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb5243d50d0>]}
+
+
+============================== 18:48:04.047320 | db6c028c-941f-46f9-a8d0-fbeb8314bedc ==============================
+[0m18:48:04.047320 [info ] [MainThread]: Running with dbt=1.6.18
+[0m18:48:04.049199 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '/home/aguan/.dbt', 'log_path': 'logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'invocation_command': 'dbt init sunshine_dbt', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m18:48:04.049868 [debug] [MainThread]: Starter project path: /home/aguan/ontario-sunshine-salary-dashboard/sunshine_dbt_venv/lib/python3.11/site-packages/dbt/include/starter_project
+[0m18:48:04.052441 [info ] [MainThread]: 
+Your new dbt project "sunshine_dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m18:48:04.052700 [info ] [MainThread]: Setting up your profile.
+[0m18:49:10.197885 [info ] [MainThread]: Profile sunshine_dbt written to /home/aguan/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m18:49:10.198469 [debug] [MainThread]: Command `dbt init` succeeded at 18:49:10.198349 after 59.48 seconds
+[0m18:49:10.198783 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb5237908d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb522bf39d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb527591590>]}
+[0m18:49:10.199083 [debug] [MainThread]: Flushing usage events
+[0m18:49:36.116208 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f5dba2dd190>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f5dba3f8e90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f5dba2a4390>]}
+
+
+============================== 18:49:36.118092 | 066f50cb-47bb-49d6-923e-0bbafbc76da1 ==============================
+[0m18:49:36.118092 [info ] [MainThread]: Running with dbt=1.6.18
+[0m18:49:36.118518 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/aguan/.dbt', 'debug': 'False', 'warn_error': 'None', 'log_path': 'logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt debug', 'send_anonymous_usage_stats': 'True'}
+[0m18:49:36.118831 [info ] [MainThread]: dbt version: 1.6.18
+[0m18:49:36.119056 [info ] [MainThread]: python version: 3.11.11
+[0m18:49:36.119302 [info ] [MainThread]: python path: /home/aguan/ontario-sunshine-salary-dashboard/sunshine_dbt_venv/bin/python3.11
+[0m18:49:36.119522 [info ] [MainThread]: os info: Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39
+[0m18:49:36.551216 [info ] [MainThread]: Using profiles dir at /home/aguan/.dbt
+[0m18:49:36.551567 [info ] [MainThread]: Using profiles.yml file at /home/aguan/.dbt/profiles.yml
+[0m18:49:36.551798 [info ] [MainThread]: Using dbt_project.yml file at /home/aguan/ontario-sunshine-salary-dashboard/dbt_project.yml
+[0m18:49:36.552058 [error] [MainThread]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m18:49:36.552375 [debug] [MainThread]: Command `dbt debug` failed at 18:49:36.552298 after 0.44 seconds
+[0m18:49:36.552615 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f5db9e9ff10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f5d881ef2d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f5dba2bb190>]}
+[0m18:49:36.552892 [debug] [MainThread]: Flushing usage events

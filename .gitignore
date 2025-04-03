@@ -1,4 +1,4 @@
-sunshine-env/
+sunshine_dbt_venv/
 data/
 
 # Terraform state

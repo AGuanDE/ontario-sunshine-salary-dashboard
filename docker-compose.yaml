@@ -11,13 +11,13 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/ontario-sunshine-service-account.json
-
   volumes:
   - ./airflow/dags:/opt/airflow/dags
   - ./airflow/logs:/opt/airflow/logs
   - ./airflow/plugins:/opt/airflow/plugins
   - ./airflow/config/airflow.cfg:/opt/airflow/config/airflow.cfg
   - ./ontario-sunshine-service-account.json:/opt/airflow/ontario-sunshine-service-account.json
+  - ./scripts:/opt/scripts
   depends_on:
     &airflow-common-depends-on
     postgres:
@@ -77,7 +77,7 @@ services:
   airflow-init:
     <<: *airflow-common
     entrypoint: >
-      bash -c 'mkdir -p /opt/airflow/logs && chown -R ${AIRFLOW_UID:-50000}:0 /opt/airflow/logs && airflow db init'
+      bash -c 'mkdir -p /opt/airflow/logs && chown -R ${AIRFLOW_UID:-50000}:0 /opt/airflow/logs && airflow db migrate && airflow users create --username ${_AIRFLOW_WWW_USER_USERNAME:-airflow} --password ${_AIRFLOW_WWW_USER_PASSWORD:-airflow} --firstname Admin --lastname User --role Admin --email admin@example.com'
     # entrypoint: >
     #   bash -c 'mkdir -p /opt/airflow/logs && chown -R ${AIRFLOW_UID:-50000}:0 /opt/airflow/logs && exec bash'
     environment:

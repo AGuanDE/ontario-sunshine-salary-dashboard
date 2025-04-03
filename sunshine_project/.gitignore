@@ -1,7 +1,0 @@
-
-target/
-dbt_packages/
-logs/
-
-# ignore service account keys
-*.json
