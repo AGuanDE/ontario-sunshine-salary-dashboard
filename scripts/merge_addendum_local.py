@@ -83,7 +83,7 @@ def load_csv_with_encoding(file_path):
     
     for encoding in encodings:
         try:
-            return pd.read_csv(file_path, encoding=encoding)
+            return pd.read_csv(file_path, encoding=encoding, keep_default_na=False, na_values=[''])
         except UnicodeDecodeError:
             continue
     

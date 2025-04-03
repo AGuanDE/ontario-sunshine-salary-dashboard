@@ -1,3 +1,5 @@
+# clean_salary_data.py
+
 import pandas as pd
 from pathlib import Path
 import json
@@ -33,21 +35,30 @@ def get_job_title_mapping():
         "SECONDARY CONTRACT TEACHER": "Secondary Teacher",
         "ENSEIGNANT": "Teacher",
         "ENSEIGNANT(E)": "Teacher",
-        
+
         # Education - Leadership
         "PRINCIPAL": "Principal",
         "ELEMENTARY PRINCIPAL": "Elementary Principal",
-        "CHAIR, ELEMENTARY": "Elementary Principal",
+        "CHAIR, ELEMENTARY": "Elementary Chair",
         "VICE PRINCIPAL": "Vice Principal",
         "VP": "Vice Principal",
         "ASSISTANT CURRICULUM LEADER, SECONDARY": "Assistant Curriculum Leader",
-        
+        "ASSOCIATE DEAN": "Associate Dean",
+        "DEAN": "Dean",
+        "ACTING DEAN": "Dean",
+        "ASSISTANT DEAN": "Assistant Dean",
+        "ACADEMIC DEAN": "Dean",
+
         # Education - Faculty
         "PROFESSOR": "Professor",
         "ASSOCIATE PROFESSOR": "Associate Professor",
         "ASSISTANT PROFESSOR": "Assistant Professor",
         "FACULTY MEMBER": "Faculty Member",
-        
+        "FULL PROFESSOR": "Professor",
+        "LECTURER": "Lecturer",
+        "RESEARCH PROFESSOR": "Research Professor",
+        "UNIVERSITY PROFESSOR": "Professor",
+
         # Healthcare - Nurses
         "REGISTERED NURSE": "Registered Nurse",
         "REGISTERED NURSE / INFIRMIÈRE AUTORISÉE": "Registered Nurse",
@@ -56,13 +67,28 @@ def get_job_title_mapping():
         "NURSE PRACTITIONER": "Nurse Practitioner",
         "REGISTERED PRACTICAL NURSE": "Registered Practical Nurse",
         "RPN": "Registered Practical Nurse",
-        
-        # Healthcare - Other
+
+        # Healthcare - Physicians & Pathology
+        "PHYSICIAN": "Physician",
         "PHARMACIST": "Pharmacist",
+        "PATHOLOGIST": "Pathologist",
+        "FORENSIC PATHOLOGIST": "Pathologist",
+        "LAB PHYSICIAN": "Pathologist",
+        "ANATOMIC PATHOLOGIST": "Pathologist",
+        "RADIOLOGIST": "Radiologist",
+        "ONCOLOGIST MEDICAL": "Medical Oncologist",
+        "ONCOLOGIST RADIATION": "Radiation Oncologist",
+        "DENTIST": "Dentist",
+        "DENTIST-IN-CHIEF": "Dentist",
+
+        # Healthcare - Other
         "PHYSIOTHERAPIST": "Physiotherapist",
         "OCCUPATIONAL THERAPIST": "Occupational Therapist",
         "SOCIAL WORKER": "Social Worker",
-        
+        "PSYCHIATRIST": "Psychiatrist",
+        "MEDICAL OFFICER OF HEALTH": "Medical Officer of Health",
+        "MEDICAL DIRECTOR": "Medical Director",
+
         # Emergency Services - Police
         "CONSTABLE": "Constable",
         "POLICE CONSTABLE": "Police Constable",
@@ -72,27 +98,47 @@ def get_job_title_mapping():
         "SERGEANT": "Sergeant",
         "DETECTIVE": "Detective",
         "INVESTIGATOR / ENQUÊTEUR": "Investigator",
-        
+        "POLICE CHIEF": "Police Chief",
+        "POLICE SUPERINTENDENT": "Police Superintendent",
+        "POLICE INSPECTOR": "Police Inspector",
+
         # Emergency Services - Fire
         "FIREFIGHTER": "Firefighter",
         "FIREFIGHTER OPERATION": "Firefighter",
         "CAPTAIN": "Captain",
-        
+        "FIRE CHIEF": "Fire Chief",
+        "FIRE MARSHAL": "Fire Marshal",
+
         # Emergency Services - Paramedics
         "PRIMARY CARE PARAMEDIC": "Primary Care Paramedic",
         "ADVANCED CARE PARAMEDIC": "Advanced Care Paramedic",
-        
+
         # Operations
         "OPERATOR": "Operator",
         "NUCLEAR OPERATOR": "Nuclear Operator",
         "MANAGER": "Manager",
+        "MANAGER, FINANCE": "Finance Manager",
+        "FINANCE MANAGER": "Finance Manager",
+        "HUMAN RESOURCES MANAGER": "HR Manager",
         "EXECUTIVE DIRECTOR": "Executive Director",
         "TEAM LEADER / CHEF D'ÉQUIPE": "Team Leader",
-        
+        "SUPERVISOR": "Supervisor",
+
+        # Executive
+        "PRESIDENT": "President",
+        "CEO": "Chief Executive Officer",
+        "CHIEF EXECUTIVE OFFICER": "Chief Executive Officer",
+        "CHIEF FINANCIAL OFFICER": "Chief Financial Officer",
+        "CFO": "Chief Financial Officer",
+        "CHIEF OPERATING OFFICER": "Chief Operating Officer",
+        "COO": "Chief Operating Officer",
+        "VICE PRESIDENT": "Vice President",
+        "VP": "Vice President",
+        "EXECUTIVE VICE PRESIDENT": "Executive Vice President",
+        "SENIOR VICE PRESIDENT": "Senior Vice President",
+
         # Common suffixes to remove
         "THE": "",
-        "A": "",
-        "AN": "",
         "I": "",
         "II": "",
         "III": "",
@@ -108,6 +154,7 @@ def get_job_title_mapping():
         "CORPORATION": "",
         "INCORPORATED": ""
     }
+
 
 def standardize_column_names(df: pd.DataFrame) -> pd.DataFrame:
     """Standardize column names using predefined mappings."""
@@ -162,11 +209,6 @@ def normalize_job_title(title: str) -> str:
     title_mapping = get_job_title_mapping()
     
     title = normalize_text(title)
-    
-    # Handle bilingual titles with forward slash
-    if '/' in title:
-        # Take the English part (before the slash)
-        title = title.split('/')[0].strip()
     
     # Split into words and normalize each word
     words = title.split()
@@ -234,8 +276,14 @@ def normalize_name(name: str) -> str:
     return name.strip()
 
 def normalize_data(df: pd.DataFrame) -> pd.DataFrame:
-    """Apply normalization rules to the DataFrame"""
     print("Normalizing data formatting...")
+    
+    if df is None:
+        print("Error: normalize_data received a None DataFrame!")
+        return None
+    if not isinstance(df, pd.DataFrame):
+        print(f"Error: df is not a dataframe, type: {type(df)}")
+        return None
     
     # Normalize text columns
     text_columns = ["first_name", "last_name", "employer", "job_title", "sector"]
@@ -252,47 +300,69 @@ def normalize_data(df: pd.DataFrame) -> pd.DataFrame:
     
     # Normalize numeric columns
     if "salary_paid" in df.columns:
-        df["salary_paid"] = pd.to_numeric(df["salary_paid"], errors="coerce")
-        df["salary_paid"] = df["salary_paid"].round(2)
-    
+        df["salary_paid"] = (
+            df["salary_paid"]
+            .astype(str)  # ensure it's a string first
+            .str.replace(r"[\$,]", "", regex=True)  # remove $ and ,
+        )
+        df["salary_paid"] = pd.to_numeric(df["salary_paid"], errors="coerce").round(2)
+        df["salary_paid"] = df["salary_paid"].fillna(0)
+
     if "taxable_benefits" in df.columns:
-        df["taxable_benefits"] = pd.to_numeric(df["taxable_benefits"], errors="coerce")
-        df["taxable_benefits"] = df["taxable_benefits"].round(2)
-    
-    if "total_compensation" in df.columns:
-        df["total_compensation"] = df["total_compensation"].round(2)
-    
+        df["taxable_benefits"] = (
+            df["taxable_benefits"]
+            .astype(str)
+            .str.replace(r"[\$,]", "", regex=True)
+        )
+        df["taxable_benefits"] = pd.to_numeric(df["taxable_benefits"], errors="coerce").round(2)
+        df["taxable_benefits"] = df["taxable_benefits"].fillna(0)
+
+    # Drop outliers with unrealistic values
+    SALARY_CEILING = 5_000_000
+    BENEFITS_CEILING = 1_000_000
+
+    initial_len = len(df)
+    df = df[
+        (df["salary_paid"].isna() | (df["salary_paid"] <= SALARY_CEILING)) &
+        (df["taxable_benefits"].isna() | (df["taxable_benefits"] <= BENEFITS_CEILING))
+    ]
+    dropped = initial_len - len(df)
+    if dropped > 0:
+        print(f"⚠️ Dropped {dropped} rows with unrealistic salary or benefits")
+
     return df
 
 def clean_sunshine_data(input_path: Path, output_dir: Path):
     print(f"🔍 Reading: {input_path}")
 
-    # Read the CSV with UTF-8-SIG encoding to handle BOM
-    try:
-        df = pd.read_csv(
-            input_path,
-            encoding="utf-8-sig",  # Try UTF-8 with BOM first
-            engine="python",
-            on_bad_lines="warn"
-        )
-    except UnicodeDecodeError:
-        # Fallback to ISO-8859-1 if UTF-8 fails
-        df = pd.read_csv(
-            input_path,
-            encoding="ISO-8859-1",
-            engine="python",
-            on_bad_lines="warn"
-        )
+    encodings = ['utf-8', 'utf-8-sig', 'iso-8859-1', 'cp1252']
+    
+    df = None
+
+    for encoding in encodings:
+        try:
+            df = pd.read_csv(
+                input_path,
+                encoding=encoding,
+                engine="python",
+                on_bad_lines="warn",
+                keep_default_na=False,
+                na_values=['']
+            )
+            print(f"Successfully read the file with encoding: {encoding}")
+            break
+        except UnicodeDecodeError:
+            print(f"Failed to read with encoding: {encoding}")
+            continue
+    else:
+        # This block runs if the loop completes without breaking (i.e., all encodings failed)
+        raise ValueError(f"Could not read file {input_path} with any of the attempted encodings: {encodings}")
+        
+    if df is None or not isinstance(df, pd.DataFrame):
+        print(f"ERROR: CSV read failed or returned invalid type: {type(df)}")
+        return
 
     print("Cleaning and standardizing data...")
-
-    # Store original schema before cleaning
-    original_schema = {
-        "columns": list(df.columns),
-        "dtypes": df.dtypes.astype(str).to_dict(),
-        "row_count": len(df),
-        "timestamp": datetime.now().isoformat()
-    }
 
     # Standardize column names using mapping
     df, original_columns = standardize_column_names(df)
@@ -307,6 +377,15 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
     )
 
     # Apply data normalization
+    print(f"Type of df before normalize_data: {type(df)}")
+    
+    if df is None:
+        print("Error: df became None before normalize_data")
+        return
+    if not isinstance(df, pd.DataFrame):
+        print(f"Error: df is not a DataFrame before normalize_data, type: {type(df)}")
+        return
+    
     df = normalize_data(df)
 
     # Define target schema (with forced types)
@@ -328,6 +407,7 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
     # Ensure calendar year is numeric
     if "calendar_year" in df.columns:
         df["calendar_year"] = pd.to_numeric(df["calendar_year"], errors="coerce")
+        df["calendar_year"] = df["calendar_year"].fillna(method="ffill")
 
     # Create total_compensation column
     if "salary_paid" in df.columns and "taxable_benefits" in df.columns:
@@ -346,54 +426,33 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
     # Create output paths
     year = df["calendar_year"].dropna().astype(int).mode()[0] if "calendar_year" in df.columns else "unknown"
     output_csv = output_dir / f"sunshine_cleaned_{year}.csv"
-    schema_dir = output_dir / "schema"
-    schema_file = schema_dir / f"schema_{year}.json"
 
     # Save cleaned data
     output_dir.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_csv, index=False)
 
-    # Save schema information
-    schema_dir.mkdir(parents=True, exist_ok=True)
-    cleaned_schema = {
-        "original_schema": original_schema,
-        "column_mapping": {
-            "original": original_columns,
-            "mapped": list(df.columns)
-        },
-        "cleaned_schema": {
-            "columns": list(df.columns),
-            "dtypes": df.dtypes.astype(str).to_dict(),
-            "row_count": len(df),
-            "timestamp": datetime.now().isoformat()
-        }
-    }
-    with open(schema_file, 'w') as f:
-        json.dump(cleaned_schema, f, indent=2)
-
     print(f"✅ Saved cleaned CSV:     {output_csv}")
-    print(f"✅ Saved schema info:     {schema_file}")
+    
+    return df
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Clean and standardize Ontario Sunshine List salary data",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
-    
     parser.add_argument(
         "--input",
         "-i",
         type=Path,
         required=True,
-        help="Path to the input CSV file"
+        help="Path to the input merged CSV file"
     )
-    
     parser.add_argument(
         "--output-dir",
         "-o",
         type=Path,
-        default=Path("data/processed"),
-        help="Directory to save processed files"
+        default=Path("data/cleaned"),
+        help="Directory to save cleaned files"
     )
     
     args = parser.parse_args()

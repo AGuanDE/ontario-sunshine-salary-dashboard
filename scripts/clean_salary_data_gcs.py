@@ -22,7 +22,7 @@ def download_gcs_file(gcs_uri):
     temp_dir = tempfile.mkdtemp()
     local_path = Path(temp_dir) / Path(blob_path).name
     blob.download_to_filename(str(local_path))
-    print(f"✅ Downloaded {gcs_uri} to {local_path}")
+    print(f"Downloaded {gcs_uri} to {local_path}")
     return local_path
 
 def upload_to_gcs(local_path, gcs_uri):
@@ -31,7 +31,7 @@ def upload_to_gcs(local_path, gcs_uri):
     bucket = client.bucket(bucket_name)
     blob = bucket.blob(blob_path)
     blob.upload_from_filename(str(local_path))
-    print(f"📤 Uploaded {local_path} to {gcs_uri}")
+    print(f"Uploaded {local_path} to {gcs_uri}")
 
 def list_merged_files(bucket_name, prefix="merged/"):
     client = storage.Client()
@@ -40,10 +40,10 @@ def list_merged_files(bucket_name, prefix="merged/"):
 
 def clean_all_merged_files(bucket_name, merged_prefix="merged/", cleaned_prefix="cleaned/"):
     merged_files = list_merged_files(bucket_name, prefix=merged_prefix)
-    print(f"🔍 Found {len(merged_files)} merged files to clean")
+    print(f"Found {len(merged_files)} merged files to clean")
 
     for blob_path in merged_files:
-        print(f"\n✨ Cleaning: {blob_path}")
+        print(f"\n Cleaning: {blob_path}")
         gcs_uri = f"gs://{bucket_name}/{blob_path}"
         local_path = download_gcs_file(gcs_uri)
 
@@ -59,3 +59,5 @@ def clean_all_merged_files(bucket_name, merged_prefix="merged/", cleaned_prefix=
 
 if __name__ == "__main__":
     clean_all_merged_files("sunshine-list-bucket")
+
+# CLI command: python scripts/clean_salary_data_gcs.py
