@@ -5,40 +5,8 @@ import tempfile
 from pathlib import Path
 import argparse
 from google.cloud import storage
-
-# Import the merge logic from your local merge_addendum.py script
+from gcs_modules import parse_gcs_path, download_gcs_file, upload_to_gcs, gcs_blob_exists
 from merge_addendum import merge_addendum
-
-def parse_gcs_path(gcs_path):
-    """Split gs://bucket/path/to/blob.csv into (bucket, path/to/blob.csv)"""
-    match = re.match(r"gs://([^/]+)/(.+)", gcs_path)
-    if not match:
-        raise ValueError(f"Invalid GCS path: {gcs_path}")
-    return match.group(1), match.group(2)
-
-def download_gcs_file(gcs_uri):
-    bucket_name, blob_path = parse_gcs_path(gcs_uri)
-    client = storage.Client()
-    bucket = client.bucket(bucket_name)
-    blob = bucket.blob(blob_path)
-    temp_dir = tempfile.mkdtemp()
-    local_path = Path(temp_dir) / Path(blob_path).name
-    blob.download_to_filename(str(local_path))
-    print(f"✅ Downloaded {gcs_uri} to {local_path}")
-    return local_path
-
-def upload_to_gcs(local_path: Path, gcs_uri: str):
-    bucket_name, blob_path = parse_gcs_path(gcs_uri)
-    client = storage.Client()
-    bucket = client.bucket(bucket_name)
-    blob = bucket.blob(blob_path)
-    blob.upload_from_filename(str(local_path))
-
-def gcs_blob_exists(gcs_uri: str) -> bool:
-    bucket_name, blob_path = parse_gcs_path(gcs_uri)
-    client = storage.Client()
-    bucket = client.bucket(bucket_name)
-    return bucket.blob(blob_path).exists()
 
 def list_years(bucket_name, prefix, pattern):
     client = storage.Client()
