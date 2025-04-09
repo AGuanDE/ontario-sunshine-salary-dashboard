@@ -23,7 +23,7 @@ def download_gcs_file(gcs_uri):
     temp_dir = tempfile.mkdtemp()
     local_path = Path(temp_dir) / Path(blob_path).name
     blob.download_to_filename(str(local_path))
-    print(f"✅ Downloaded {gcs_uri} to {local_path}")
+    print(f"> Downloaded {blob_path}")
     return local_path
 
 # 3
