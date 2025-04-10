@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: staging
+    database: ontario-sunshine
+    schema: ontario_sunshine_dataset
+    tables:
+      - name: salary-canon
+
+models:
+  - name: stg_salary_canon
+    description: "Staged salary data from GCS source. Performs basic type casting, selects columns, and adds surrogate key (id)"
