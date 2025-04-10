@@ -1,4 +1,4 @@
-# scripts/upload_to_gcs.py
+# scripts/upload_raw_to_gcs.py
 
 from google.cloud import storage
 from pathlib import Path

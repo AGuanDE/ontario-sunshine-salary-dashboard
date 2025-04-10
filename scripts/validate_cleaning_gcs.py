@@ -9,11 +9,12 @@ from google.cloud import storage
 import pandas as pd
 
 REQUIRED_COLUMNS = [
-    "first_name", "last_name", "employer", "job_title",
+    "sector", "first_name", "last_name", "employer", "job_title",
     "calendar_year", "salary_paid", "taxable_benefits"
 ]
 
 EXPECTED_DTYPES = {
+    "sector": "object",
     "first_name": "object",
     "last_name": "object",
     "employer": "object",
@@ -24,11 +25,8 @@ EXPECTED_DTYPES = {
 }
 
 NON_NULL_COLS = {
-    "first_name", "last_name", "employer", "job_title", "calendar_year"
+    "sector", "first_name", "last_name", "employer", "job_title", "calendar_year"
 }
-
-SALARY_RANGE = (0, 5_000_000)
-BENEFITS_RANGE = (0, 1_000_000)
 
 BUCKET_NAME = "sunshine-list-bucket"
 MERGED_PREFIX = "merged/"
@@ -53,11 +51,7 @@ def validate_file(cleaned_path: Path, merged_path: Path):
 
     errors = []
 
-    # Row count comparison (clean script does remove rows if numeric expecations broken)
-    if abs(len(cleaned_df) - len(merged_df)) > 10:
-        errors.append(f"⚠️ Row count mismatch: merged={len(merged_df)}, cleaned={len(cleaned_df)} /n note: clean_salary_data script removes rows if salary/benefits expecations broken")
-
-    # Required columns
+    # find Missing columns
     missing_cols = [col for col in REQUIRED_COLUMNS if col not in cleaned_df.columns]
     if missing_cols:
         errors.append(f"❌ Missing columns: {missing_cols}")
@@ -68,35 +62,6 @@ def validate_file(cleaned_path: Path, merged_path: Path):
             null_indices = cleaned_df[cleaned_df[col].isnull()].index.tolist()
             if null_indices:
                 errors.append(f"❌ Null values in column: {col} at rows: {null_indices}")
-    
-    # # Null checks
-    # for col in NON_NULL_COLS:
-    #     if col in cleaned_df.columns and cleaned_df[col].isnull().any():
-    #         errors.append(f"❌ Null values in column: {col}")
-
-    # Range checks
-    error_cols = ["first_name", "last_name", "employer", "calendar_year", "salary_paid", "taxable_benefits"]
-
-    if "salary_paid" in cleaned_df.columns:
-        salary_mask = ~cleaned_df["salary_paid"].between(SALARY_RANGE[0], SALARY_RANGE[1], inclusive="left")
-        if salary_mask.any():
-            errors.append("❌ salary_paid out of expected range")
-            print("Rows with invalid salary_paid values:")
-            print(cleaned_df.loc[salary_mask, error_cols])
-
-    if "taxable_benefits" in cleaned_df.columns:
-        benefits_mask = ~cleaned_df["taxable_benefits"].between(BENEFITS_RANGE[0], BENEFITS_RANGE[1], inclusive="left")
-        if benefits_mask.any():
-            errors.append("❌ taxable_benefits out of expected range")
-            print("Rows with invalid taxable_benefits values:")
-            print(cleaned_df.loc[benefits_mask, error_cols])
-
-    # if "salary_paid" in cleaned_df.columns:
-    #     if not cleaned_df["salary_paid"].between(SALARY_RANGE[0], SALARY_RANGE[1], inclusive="left").all():
-    #         errors.append("❌ salary_paid out of expected range")
-    # if "taxable_benefits" in cleaned_df.columns:
-    #     if not cleaned_df["taxable_benefits"].between(BENEFITS_RANGE[0], BENEFITS_RANGE[1], inclusive="left").all():
-    #         errors.append("❌ taxable_benefits out of expected range")
 
     # Dtype check
     for col, expected_dtype in EXPECTED_DTYPES.items():

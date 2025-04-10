@@ -1,23 +1,26 @@
 # clean_salary_data.py
 
 import pandas as pd
+import numpy as np
 from pathlib import Path
 import json
 from datetime import datetime
 import argparse
 import re
+import csv
 
 def get_column_mapping():
     """Define standard column name mappings for common variations. *Consider changing to fuzzy matching for sustainability later"""
     return {
         "job_title": ["jobtitle", "job title", "jobtitle", "position", "position title", "Job Title", "job_title", "Job Title "],
-        "salary_paid": ["salary", "salary paid", "salarypaid", "Salary Paid", "Salary Paid ", "salary_paid"],
-        "taxable_benefits": ["benefits", "taxable benefits", "taxablebenefits", "Taxable Benefits", "Taxable Benefits ", "taxable_benefits"],
+        "salary_paid": ["salary", "salary paid", "salarypaid", "Salary Paid", " Salary Paid ", "Salary Paid ", "salary_paid"],
+        "taxable_benefits": ["benefits", "taxable benefits", "taxablebenefits", "Taxable Benefits", " Taxable Benefits ", "Taxable Benefits ", "taxable_benefits"],
         "first_name": ["firstname", "first name", "given name", "First Name", "first_name"],
         "last_name": ["lastname", "last name", "surname", "Last Name", "last_name"],
         "calendar_year": ["year", "fiscal year", "fiscal_year", "Calendar Year", "calendar_year"],
         "employer": ["organization", "organization name", "org", "Employer", "employer", "employer_name"],
-        "sector": ["sector name", "sectorname", "Sector", "ï»¿Sector", "sector"]  # Handle BOM character
+        "sector": ["sector name", "sectorname", "Sector", "ï»¿Sector", "sector"],
+        "status": ["status", "status ", "Status", "Status "]
     }
 
 def get_job_title_mapping():
@@ -158,7 +161,7 @@ def get_job_title_mapping():
 
 def standardize_column_names(df: pd.DataFrame) -> pd.DataFrame:
     """Standardize column names using predefined mappings."""
-    # Store original column names for schema tracking
+    # Store original column names as a copy for schema tracking
     original_columns = df.columns.tolist()
     
     # Create reverse mapping for easier lookup
@@ -190,14 +193,18 @@ def normalize_text(text: str) -> str:
     
     text = str(text).strip()
     
+    # Collapse multiple spaces to a single space
     text = re.sub(r'\s+', ' ', text)
     
     # Handle common special characters
     text = text.replace("‘", "'").replace("’", "'")   # Curly single quotes → straight
     text = text.replace("–", "-").replace("—", "-")   # En-dash/em-dash → hyphen
 
+    # remove non printable char
     text = ''.join(char for char in text if char.isprintable())
     
+    text = text.replace('"', '""')
+
     return text
 
 def normalize_job_title(title: str) -> str:
@@ -244,10 +251,6 @@ def normalize_employer(employer: str) -> str:
         return employer
     
     employer = normalize_text(employer)
-    
-    # Handle bilingual employer names with forward slash
-    if '/' in employer:
-        employer = employer.split('/')[0].strip()
 
     # Common organization standardizations
     employer = employer.replace('Univ.', 'University').replace('Univ ', 'University ')
@@ -267,16 +270,13 @@ def normalize_name(name: str) -> str:
     
     name = normalize_text(name)
     
-    # Handle common name variations
-    name = name.replace('Mc ', 'Mc').replace('Mac ', 'Mac')
-    
     # Capitalize first letter of each word
     name = ' '.join(word.capitalize() for word in name.split())
     
     return name.strip()
 
 def normalize_data(df: pd.DataFrame) -> pd.DataFrame:
-    print("Normalizing data formatting...")
+    print("Normalizing data...")
     
     if df is None:
         print("Error: normalize_data received a None DataFrame!")
@@ -290,56 +290,75 @@ def normalize_data(df: pd.DataFrame) -> pd.DataFrame:
     for col in text_columns:
         if col in df.columns:
             if col == "job_title":
-                df[col] = df[col].apply(normalize_job_title)
+                df.loc[:, col] = df.loc[:, col].apply(normalize_job_title)
             elif col == "employer":
-                df[col] = df[col].apply(normalize_employer)
+                df.loc[:, col] = df.loc[:, col].apply(normalize_employer)
             elif col in ["first_name", "last_name"]:
-                df[col] = df[col].apply(normalize_name)
+                df.loc[:, col] = df.loc[:, col].apply(normalize_name)
             else:
-                df[col] = df[col].apply(normalize_text)
-    
-    # Normalize numeric columns
-    if "salary_paid" in df.columns:
-        df["salary_paid"] = (
-            df["salary_paid"]
-            .astype(str)  # ensure it's a string first
-            .str.replace(r"[\$,]", "", regex=True)  # remove $ and ,
+                df.loc[:, col] = df.loc[:, col].apply(normalize_text)
+
+    def clean_numeric_column(series: pd.Series) -> pd.Series:
+        """Clean numeric columns without dtype warnings"""
+        return (
+            pd.to_numeric(
+                series.astype(str).str.replace(r"[^0-9\.]+", "", regex=True),
+                errors="coerce"
+            )
+            .round(2)
+            .fillna(0)
         )
-        df["salary_paid"] = pd.to_numeric(df["salary_paid"], errors="coerce").round(2)
-        df["salary_paid"] = df["salary_paid"].fillna(0)
+
+    if "salary_paid" in df.columns:
+        df.loc[:, "salary_paid"] = clean_numeric_column(df["salary_paid"])
 
     if "taxable_benefits" in df.columns:
-        df["taxable_benefits"] = (
-            df["taxable_benefits"]
-            .astype(str)
-            .str.replace(r"[\$,]", "", regex=True)
-        )
-        df["taxable_benefits"] = pd.to_numeric(df["taxable_benefits"], errors="coerce").round(2)
-        df["taxable_benefits"] = df["taxable_benefits"].fillna(0)
-
-    # Drop outliers with unrealistic values
-    SALARY_CEILING = 5_000_000
-    BENEFITS_CEILING = 1_000_000
-
-    initial_len = len(df)
-    df = df[
-        (df["salary_paid"].isna() | (df["salary_paid"] <= SALARY_CEILING)) &
-        (df["taxable_benefits"].isna() | (df["taxable_benefits"] <= BENEFITS_CEILING))
-    ]
-    dropped = initial_len - len(df)
-    if dropped > 0:
-        print(f"⚠️ Dropped {dropped} rows with unrealistic salary or benefits")
+        df.loc[:, "taxable_benefits"] = clean_numeric_column(df["taxable_benefits"])
 
     return df
 
-def clean_sunshine_data(input_path: Path, output_dir: Path):
-    print(f"🔍 Reading: {input_path}")
+def deduplicate_with_salary_resolution(df):
+    """
+    Deduplicate rows that have same person/job but different salaries.
+    keeps row with higher salary if all else the same.
+    """
+    df = df.copy()
 
-    encodings = ['utf-8', 'utf-8-sig', 'iso-8859-1', 'cp1252']
+    # First remove exact duplicates
+    original_len = len(df)
+    df = df.drop_duplicates()
+    exact_dupes = original_len - len(df)
+
+    # find groups with non-exact duplicates (differences in salary or benefits)
+    group_cols = ['sector', 'first_name', 'last_name', 'employer', 'job_title', 'calendar_year']
+    duplicated_groups = df.groupby(group_cols).size().reset_index(name='count')
+    duplicated_groups = duplicated_groups[duplicated_groups['count'] > 1].copy()
+
+    if len(duplicated_groups) > 0:
+        # keep row with highest total comp
+        df.loc[:, 'total_comp'] = (
+            pd.to_numeric(df['salary_paid'], errors='coerce').fillna(0).infer_objects(copy=False) +
+            pd.to_numeric(df['taxable_benefits'], errors='coerce').fillna(0).infer_objects(copy=False)
+        )
+        df.sort_values('total_comp', ascending=False, inplace=True)
+        df.drop_duplicates(subset=group_cols, inplace=True)
+        df.drop(columns=['total_comp'], inplace=True)
+
+        non_exact_dupes = len(duplicated_groups)
+    else:
+        non_exact_dupes = 0
+
+    return df, {
+        'exact_duplicates_removed': exact_dupes,
+        'non_exact_duplicates_resolved': non_exact_dupes
+    }
+
+def clean_sunshine_data(input_path: Path, output_dir: Path):
+    encoding_list = ['utf-8', 'utf-8-sig', 'iso-8859-1', 'cp1252']
     
     df = None
 
-    for encoding in encodings:
+    for encoding in encoding_list:
         try:
             df = pd.read_csv(
                 input_path,
@@ -349,7 +368,6 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
                 keep_default_na=False,
                 na_values=['']
             )
-            print(f"Successfully read the file with encoding: {encoding}")
             break
         except UnicodeDecodeError:
             print(f"Failed to read with encoding: {encoding}")
@@ -361,23 +379,11 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
     if df is None or not isinstance(df, pd.DataFrame):
         print(f"ERROR: CSV read failed or returned invalid type: {type(df)}")
         return
-
-    print("Cleaning and standardizing data...")
+    
+    print("\nCleaning and standardizing data...")
 
     # Standardize column names using mapping
     df, original_columns = standardize_column_names(df)
-
-    # Normalize remaining column names
-    df.columns = (
-        df.columns
-        .str.strip()
-        .str.lower()
-        .str.replace(" ", "_")
-        .str.replace("-", "_")
-    )
-
-    # Apply data normalization
-    print(f"Type of df before normalize_data: {type(df)}")
     
     if df is None:
         print("Error: df became None before normalize_data")
@@ -386,7 +392,7 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
         print(f"Error: df is not a DataFrame before normalize_data, type: {type(df)}")
         return
     
-    df = normalize_data(df)
+    df = normalize_data(df).copy()
 
     # Define target schema (with forced types)
     target_columns = {
@@ -407,11 +413,11 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
     # Ensure calendar year is numeric
     if "calendar_year" in df.columns:
         df["calendar_year"] = pd.to_numeric(df["calendar_year"], errors="coerce")
-        df["calendar_year"] = df["calendar_year"].fillna(method="ffill")
+        df["calendar_year"] = df["calendar_year"].ffill().infer_objects(copy=False)
 
     # Create total_compensation column
     if "salary_paid" in df.columns and "taxable_benefits" in df.columns:
-        df["total_compensation"] = df["salary_paid"] + df["taxable_benefits"]
+        df["total_compensation"] = (df["salary_paid"] + df["taxable_benefits"]).round(2)
 
 
     # Enforce target schema
@@ -421,17 +427,46 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
             except Exception as e:
                 print(f"Error converting {col} to {dtype}: {e}")
         else:
-            print(f"Warning: Column {col} not found in DataFrame")
+            print(f"Warning: Column: {col} - not found in DataFrame")
 
     # Create output paths
     year = df["calendar_year"].dropna().astype(int).mode()[0] if "calendar_year" in df.columns else "unknown"
     output_csv = output_dir / f"sunshine_cleaned_{year}.csv"
 
-    # Save cleaned data
-    output_dir.mkdir(parents=True, exist_ok=True)
-    df.to_csv(output_csv, index=False)
+    # Final dedupe
+    pre_final_len = len(df)
+    df, final_dedup_stats = deduplicate_with_salary_resolution(df)
+    final_removed = pre_final_len - len(df)
+    print(f"\nFinal deduplication removed {final_removed} rows total")
 
-    print(f"✅ Saved cleaned CSV:     {output_csv}")
+    # drop rows where any nulls or empty strings are found in the non-numeric columns
+    pre_drop_len = len(df)
+    drop_cols = ['sector', 'first_name', 'last_name', 'employer', 'job_title']
+    df[drop_cols] = df[drop_cols].replace('', np.nan)
+    df = df.dropna(subset=drop_cols)
+    post_drop = pre_drop_len - len(df)
+    print(f"\nDropped {post_drop} rows with nulls in final cleaned file")
+
+    # Save cleaned data
+    # encapsulate all nonnumeric columns with double quotes to solve parsing issue of commas being in job_titles
+    output_dir.mkdir(parents=True, exist_ok=True)
+    df.to_csv(
+        output_csv,
+        index=False,
+        quotechar='"',
+        quoting=csv.QUOTE_ALL
+    )
+
+    # After writing the CSV, validate column counts
+    expected_columns = len(df.columns)
+    with open(output_csv, 'r') as f:
+        reader = csv.reader(f)
+        header = next(reader)
+        for i, row in enumerate(reader):
+            if len(row) != expected_columns:
+                print(f"Row {i+2} has {len(row)} columns (expected {expected_columns})")
+
+    print(f"✅ Saved cleaned CSV: {output_csv}")
     
     return df
 
