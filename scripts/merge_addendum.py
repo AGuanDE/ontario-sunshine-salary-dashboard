@@ -1,6 +1,7 @@
 # merge_addendum.py
 
 import pandas as pd
+import numpy as np
 from pathlib import Path
 import json
 import re
@@ -177,13 +178,13 @@ def merge_addendum(salary_path: Path, addendum_path: Path, output_path: Path):
     
     salary_df["_match_key"] = salary_df.apply(match_key, axis=1)
 
-    # 7) Deletions
+    # Deletions
     if not to_delete.empty:
         to_delete["_match_key"] = to_delete.apply(match_key, axis=1)
         delete_keys = set(to_delete["_match_key"]) # set of keys to delete
         salary_df = salary_df[~salary_df["_match_key"].isin(delete_keys)]
 
-    # 8) Changes
+    # Changes
     # If it finds an exact match (using compare_rows func), it skips the change. 
     # If it finds a match based on _match_key but the rows are different, it removes the old and adds the new. 
     # If no match is found, it treats it as an addition.
@@ -216,30 +217,23 @@ def merge_addendum(salary_path: Path, addendum_path: Path, output_path: Path):
         changes_metadata["changes_skipped"] = len(skipped_changes)
         changes_metadata["changes_applied"] = len(needed_changes)
 
-    # 9) Additions
+    # Additions
     if not to_add.empty:
         salary_df = pd.concat([salary_df, to_add], ignore_index=True)
 
-    # 10) Remove helper columns 
+    # Remove helper columns 
     if "_match_key" in salary_df.columns:
         salary_df.drop(columns="_match_key", inplace=True)
     if status_col in salary_df.columns:
         salary_df.drop(columns=status_col, inplace=True)
 
-    # 11) Final dedupe
+    # Final dedupe
     pre_final_len = len(salary_df)
     salary_df, final_dedup_stats = deduplicate_with_salary_resolution(salary_df)
     final_removed = pre_final_len - len(salary_df)
     print(f"\nFinal deduplication removed {final_removed} rows total")
 
-    # 12) drop rows where any nulls are found in the non-numeric columns
-    pre_drop_len = len(salary_df)
-    drop_cols = ['sector', 'first_name', 'last_name', 'employer', 'job_title', 'salary_paid', 'taxable_benefits']
-    salary_df = salary_df.dropna(subset=drop_cols)
-    post_drop = pre_drop_len - len(salary_df)
-    print(f"\nDropped {post_drop} rows with nulls in final merge file")
-
-    # 13) Save merged CSV
+    # Save merged CSV
     year = int(salary_df["calendar_year"].mode()[0])
     output_file = output_path / f"merged_salary_{year}_uncleaned.csv"
     salary_df.to_csv(output_file, index=False)
