@@ -374,7 +374,7 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
             continue
     else:
         # This block runs if the loop completes without breaking (i.e., all encodings failed)
-        raise ValueError(f"Could not read file {input_path} with any of the attempted encodings: {encodings}")
+        raise ValueError(f"Could not read file {input_path} with any of the attempted encodings: {encoding}")
         
     if df is None or not isinstance(df, pd.DataFrame):
         print(f"ERROR: CSV read failed or returned invalid type: {type(df)}")
