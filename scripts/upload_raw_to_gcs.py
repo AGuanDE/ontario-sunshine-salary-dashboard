@@ -5,7 +5,6 @@ from pathlib import Path
 import re
 
 def extract_year(filename:str) -> str:
-
     match = re.search(r"(20\d{2}|19\d{2})", filename)
     if match:
         return match.group(1)
@@ -19,7 +18,7 @@ def upload_to_gcs(bucket_name: str, source_file_path: str, destination_blob_name
     Parameters:
         bucket_name (str): Name of your GCS bucket.
         source_file_path (str): Local path to the file.
-        destination_blob_name (str): Desired GCS path (e.g. 'raw/2023/sunshine.csv').
+        destination_blob_name (str): Desired GCS path.
     """
     # Create GCS client (uses GOOGLE_APPLICATION_CREDENTIALS env variable)
     client = storage.Client()
@@ -40,13 +39,13 @@ def standardize_and_upload(folder: Path, category: str, bucket_name: str):
             print(e)
 
 if __name__ == "__main__":
-    # GCS bucket name
-    bucket_name = "sunshine-list-bucket"
+    bucket_name = "sunshine-list-bucket" # replace with your bucket name
     
     # Base paths for data
-    salary_path = Path("/home/aguan/ontario-sunshine-salary-dashboard/data/raw/salaries")
-    addendum_path = Path("/home/aguan/ontario-sunshine-salary-dashboard/data/raw/addendums")
+    # replace with your actual file path
+    salary_path = Path("data/raw/salary")
+    addendum_path = Path("data/raw/addendum")
     
     # Upload files
-    standardize_and_upload(salary_path, category="salaries", bucket_name=bucket_name)
-    standardize_and_upload(addendum_path, category="addendums", bucket_name=bucket_name)
+    standardize_and_upload(salary_path, category="salary", bucket_name=bucket_name)
+    standardize_and_upload(addendum_path, category="addendum", bucket_name=bucket_name)
