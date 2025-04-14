@@ -2737,3 +2737,12 @@
 [2025-04-14T01:14:58.275-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
 [2025-04-14T01:20:12.308-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
 [2025-04-14T01:25:26.510-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2025-04-14T01:30:40.973-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2025-04-14T01:35:55.673-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2025-04-14T01:41:10.739-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2025-04-14T01:46:26.208-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2025-04-14T01:51:41.722-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2025-04-14T01:56:57.476-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2025-04-14T02:02:13.354-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2025-04-14T02:07:29.515-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2025-04-14T02:12:45.893-0400] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
