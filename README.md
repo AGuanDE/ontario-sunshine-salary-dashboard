@@ -71,7 +71,13 @@ Follow these steps to set up and run the data pipeline on your local machine usi
 
    🕒 **Wait for completion:** The full pipeline (1996 up to the latest year) will take a few minutes to complete, since it is processing multiple years of data. You can monitor progress in the Airflow UI’s **Graph** or **Tree** view. Each year’s run will execute the chain of tasks one after another. Wait until all tasks across all years show a success status (green) before moving to the next step. The DAG is designed with catch-up enabled, so it will automatically run for each year up to the current year.
 
-3. **The dbt models will run after.** After Airflow has finished ingesting and cleaning the data, it will trigger the 'trigger_dbt_runner' task which will spin up another docker container to run the dbt models (the dbt has to run in a separate container because of dependency conflicts with airflow). Once the dbt models are succesfully built, the tables are ready to be visualized. 
+3.  **The dbt models will run after.** After Airflow has finished ingesting and processing the data, it will trigger the 'trigger_dbt_runner' task which will spin up another docker container to run the dbt models (dbt runs in a separate container due to dependency conflicts with Airflow i.e. dbt-core).
+
+    The primary dbt model (`models/staging/stg_salary_canon.sql`) processes the cleaned data and materializes it as a table in your data warehouse (e.g., BigQuery). To optimize query performance and reduce costs for downstream analysis (like in the Streamlit app), this table is explicitly configured with:
+    * **Partitioning:** The table is partitioned by the `calendar_year` column 
+    * **Clustering:** Within each partition, the data is clustered by the `job_title` and `sector` columns.
+
+    Once the dbt models are successfully built with these optimizations, the final tables are ready for visualization.
 
 4. **Launch the Streamlit app.** Finally, you can run the Streamlit app to visualize the data. The Streamlit application will query the processed data (from BigQuery) and provide an interactive dashboard for the Sunshine List. To start the app, run:  
    ```bash
@@ -92,3 +98,181 @@ Follow these steps to set up and run the data pipeline on your local machine usi
 
 By following the above steps, you have set up a complete data pipeline for the Ontario Sunshine List. 🎉 You used Docker to run Airflow (for ingestion and cleaning), dbt for transformations, and Streamlit for visualization. Optionally, you leveraged Terraform and GCP to deploy the infrastructure on the cloud. This project should give you hands-on experience with orchestrating a multi-step workflow and using cloud data warehouse tools. Feel free to explore the Airflow DAG, the dbt models, and the Streamlit app code and play around with it. Good luck!
 
+# MORE INFORMATION...
+
+## Understanding the Workflow & Scripts
+
+This section provides more detail on the pipeline stages and the purpose of each script involved.
+
+### Detailed Pipeline Stages (As Orchestrated by Airflow)
+
+The `data_ingestion_dag` in Airflow orchestrates the following main steps for *each year* of data, typically processing from 1996 (beginning of sunshine list) up to the most recent available year:
+
+1.  **Ingestion (`ingest_data.py`)**:
+    * Reads the `scripts/url_config.yaml` file (which is found in the scripts folder) to find the official URLs for the main salary disclosure CSV and the addendum CSV for the target year.
+    * Downloads these two files using the specified URLs.
+    * Saves the downloaded files locally within the Airflow container, typically into paths like `data/raw/salary/salary_{year}_raw.csv` and `data/raw/addendum/addendum_{year}_raw.csv`. Note that not all years have an addendum file.
+
+2.  **Upload Raw to GCS (`upload_raw_to_gcs.py`)**:
+    * Scans the local `data/raw/salary` and `data/raw/addendum` directories.
+    * Extracts the year from each filename.
+    * Standardizes the filenames (e.g., `salary_1996_raw.csv` becomes `sunshine_salary_1996.csv`).
+    * Uploads these standardized raw files to your Google Cloud Storage (GCS) bucket (specified by the `--bucket` argument, default `sunshine-list-bucket`) under the `raw/salary/` and `raw/addendum/` prefixes. This script requires Google Cloud credentials configured in the environment.
+
+3.  **Merge Addendum (`merge_addendum_gcs.py` & `merge_addendum.py`)**:
+    * The `_gcs` script orchestrates the process using GCS. It identifies the year to process.
+    * It downloads the corresponding raw `sunshine_salary_{year}.csv` and `sunshine_addendum_{year}.csv` files from the `raw/` prefix in GCS to a temporary location.
+    * It then calls the core logic in `merge_addendum.py`.
+    * **Core Merge Logic (`merge_addendum.py`)**:
+        * Reads both CSVs, attempting multiple character encodings (`utf-8`, `iso-8859-1`, etc.) to handle potential inconsistencies in the source files. It uses the efficient `pyarrow` engine for reading.
+        * Standardizes column names based on predefined mappings (e.g., 'Salary Paid' -> 'salary_paid').
+        * **Deduplicates** both the salary and addendum files individually *before* merging. If duplicate entries (same person, employer, job, year) exist with different salaries, it keeps the one with the higher total compensation (`salary_paid` + `taxable_benefits`).
+        * Identifies the 'status' column in the addendum and normalizes its values to 'addition', 'deletion', or 'changed'.
+        * Applies the addendum changes:
+            * Rows marked 'deletion' are removed from the salary data.
+            * Rows marked 'addition' are appended to the salary data.
+            * Rows marked 'changed' are compared to existing salary data. If the addendum row is identical to an existing row, it's skipped. If it's different, the old row is removed, and the 'changed' row from the addendum is added.
+        * Uses a composite key (`_match_key`) based on normalized name, employer, job title, and year to match records between files.
+        * Performs a final deduplication step after all changes are applied.
+        * Saves the result to a temporary file named `merged_salary_{year}_uncleaned.csv`.
+    * `merge_addendum_gcs.py` uploads this temporary merged file back to GCS under the `merged/` prefix.
+
+4.  **Validate Merge (`validate_merge_gcs.py` & `validate_merge.py`)**:
+    * Similar to the merge step, the `_gcs` script orchestrates by downloading the merged file and the original raw salary/addendum files from GCS for a given year.
+    * It calls the core logic in `validate_merge.py`.
+    * **Core Validation Logic (`validate_merge.py`)**:
+        * Checks if rows marked for 'deletion' in the addendum are truly absent in the final merged file.
+        * Checks if rows marked for 'addition' were successfully added to the merged file.
+        * Reports any discrepancies found. This acts as a sanity check on the merge process.
+
+5.  **Clean Data (`clean_salary_data_gcs.py` & `clean_salary_data.py`)**:
+    * The `_gcs` script downloads the `merged_salary_{year}_uncleaned.csv` file from the `merged/` prefix in GCS.
+    * It calls the core logic in `clean_salary_data.py`.
+    * **Core Cleaning Logic (`clean_salary_data.py`)**:
+        * Reads the merged CSV, again trying multiple encodings.
+        * Standardizes column names.
+        * Performs extensive normalization:
+            * Text fields (names, employer, job title, sector) are trimmed, and special characters/quotes are standardized.
+            * Employer names have common abbreviations expanded (e.g., 'Univ.' -> 'University').
+            * Job titles are normalized using a large mapping to standardize common titles (e.g., 'TEACHER, ELEMENTARY' -> 'Elementary Teacher').
+            * First and last names are capitalized consistently.
+        * Numeric fields (`salary_paid`, `taxable_benefits`) are cleaned by removing non-numeric characters (like '$', ',') and converted to float, filling errors/NaNs with 0.
+        * Creates derived columns: `full_name` and `total_compensation`.
+        * Ensures `calendar_year` is an integer type.
+        * Performs a final deduplication (using the same salary resolution logic as the merge step).
+        * Drops rows that have null or empty values in essential text columns (sector, names, employer, job title) after cleaning.
+        * Saves the result to a temporary file `sunshine_cleaned_{year}.csv`, ensuring all non-numeric fields are quoted to handle potential commas within fields (like job titles).
+    * `clean_salary_data_gcs.py` uploads this final cleaned file to GCS under the `cleaned/` prefix.
+
+6.  **Validate Cleaning (`validate_cleaning_gcs.py`)**:
+    * Downloads the cleaned file and the corresponding merged file from GCS.
+    * Checks the cleaned file against a predefined schema:
+        * Verifies that all required columns are present.
+        * Ensures key columns do not contain null values.
+        * Confirms that columns have the expected data types (e.g., `salary_paid` is float, `calendar_year` is integer).
+    * Reports any schema violations found.
+
+7.  **Trigger dbt Run**: After all years are processed and validated by the Airflow DAG, a final task triggers a separate Docker container (`dbt_runner`) to execute the dbt models.
+    * dbt connects to the destination (e.g., BigQuery).
+    * It reads the cleaned data (presumably from the `cleaned/` location in GCS, often loaded into staging tables in BigQuery).
+    * It applies the transformations defined in your dbt project's models (e.g., creating views, joining data, calculating aggregates).
+    * The final modeled data resides in BigQuery tables/views ready for analysis.
+
+8.  **Visualization (Streamlit)**: The `streamlit_app.py` is run manually.
+    * It connects to BigQuery (using credentials from `GOOGLE_APPLICATION_CREDENTIALS`).
+    * It queries the final tables/views created by dbt.
+    * It presents an interactive dashboard based on that data.
+
+### Script folder Breakdown
+
+* **`ingest_data.py`**: Downloads raw yearly data based on `url_config.yaml`.
+* **`url_config.yaml`**: Stores the source URLs for salary and addendum files for each year.
+* **`upload_raw_to_gcs.py`**: Takes local raw files, standardizes names, uploads to GCS `raw/` prefix.
+* **`merge_addendum.py`**: Core logic to combine salary + addendum data, handling duplicates and status changes. (Local file I/O).
+* **`merge_addendum_gcs.py`**: Orchestrates the merge using GCS for input/output, calling `merge_addendum.py` logic.
+* **`clean_salary_data.py`**: Core logic for cleaning, normalizing, and standardizing data within a single merged file. (Local file I/O).
+* **`clean_salary_data_gcs.py`**: Orchestrates cleaning using GCS input/output, calling `clean_salary_data.py` logic.
+* **`validate_merge.py`**: Core logic to check if deletions/additions from addendum were applied correctly in the merged file. (Local file I/O).
+* **`validate_merge_gcs.py`**: Orchestrates merge validation using GCS input/output, calling `validate_merge.py` logic.
+* **`validate_cleaning_gcs.py`**: Checks the final cleaned data in GCS against schema expectations (columns, nulls, dtypes).
+* **`gcs_modules.py`**: Utility functions for common GCS operations (download, upload, check existence, parse path) used by `_gcs.py` scripts.
+* **`streamlit_app.py`**: (Not provided, but mentioned) Assumed to query final dbt models from BigQuery and display results.
+
+### Key Concepts Explained
+
+* **Addendum Files**: These files, provided alongside the main salary list for most years, contain corrections or updates. They list records that should be added, deleted, or changed in the main list. The `merge_addendum.py` script is crucial for applying these changes accurately.
+* **Deduplication**: The source data occasionally contains duplicate entries for the same person/job/year, sometimes with different salary figures. The scripts perform deduplication at multiple stages (before merging, after merging, after cleaning). The strategy is to keep the entry with the highest `total_compensation` when resolving salary discrepancies for otherwise identical rows (we assume the higher salary is the truth). Exact duplicates are simply dropped.
+* **Normalization**: Data comes in various formats (e.g., 'TEACHER', 'Teacher, Elementary', 'ENSEIGNANT'). The `clean_salary_data.py` script applies normalization rules to standardize text fields like job titles, employer names, and personal names for consistency. Numeric fields are also cleaned to remove currency symbols and commas.
+* **Encoding Handling**: Source CSVs may use different character encodings. The `load_csv_with_encoding` function (used in `merge_addendum.py` and `clean_salary_data.py`) attempts several common encodings (`utf-8`, `iso-8859-1`, etc.) to ensure the files can be read correctly.
+* **Validation**: Separate validation scripts (`validate_merge*.py`, `validate_cleaning_gcs.py`) are included to verify the integrity of the data after key transformation steps (merging and cleaning). They check for correctness (merge logic applied) and schema compliance (cleaning produced expected format).
+* **Local vs. Cloud (`_gcs.py` scripts)**: The project provides pairs of scripts for core operations (merge, clean, validate). Scripts *without* `_gcs` in the name (`merge_addendum.py`, `clean_salary_data.py`, `validate_merge.py`) operate purely on local files specified via command-line arguments. Scripts *with* `_gcs` (`merge_addendum_gcs.py`, etc.) orchestrate the process using Google Cloud Storage for inputs and outputs, calling the core logic from the non-GCS scripts after downloading files to temporary local storage. The Airflow DAG is configured to use these `_gcs.py` scripts by default.
+
+### Running Individual Scripts
+
+While Airflow runs the end-to-end pipeline, you can run individual scripts manually for testing or debugging specific steps. Remember to provide the necessary command-line arguments.
+
+* **Download Raw Data for a Year:**
+    ```bash
+    python scripts/ingest_data.py --year 2022 --config scripts/url_config.yaml
+    ```
+    *(Requires `url_config.yaml`. Saves to `data/raw/...`)*
+
+* **Upload Raw Data to GCS (Specific Year):**
+    ```bash
+    python scripts/upload_raw_to_gcs.py --bucket your-gcs-bucket-name --year 2022
+    ```
+    *(Requires local files in `data/raw/...` and GCS credentials)*
+
+* **Merge Local Files:**
+    ```bash
+    python scripts/merge_addendum.py --salary data/raw/salary/salary_2022_raw.csv --addendum data/raw/addendum/addendum_2022_raw.csv --output data/merged_local
+    ```
+    *(Outputs `merged_salary_2022_uncleaned.csv`)*
+
+* **Merge Files from GCS (Specific Year):**
+    ```bash
+    python scripts/merge_addendum_gcs.py --bucket your-gcs-bucket-name --year 2022
+    ```
+    *(Requires raw files in GCS, GCS credentials. Outputs to `gs://your-gcs-bucket-name/merged/`)*
+
+* **Clean Local Merged File:**
+    ```bash
+    python scripts/clean_salary_data.py --input data/merged_local/merged_salary_2022_uncleaned.csv --output-dir data/cleaned_local
+    ```
+    *(Outputs `sunshine_cleaned_2022.csv`)*
+
+* **Clean Merged File from GCS (Specific Year):**
+    ```bash
+    python scripts/clean_salary_data_gcs.py --bucket your-gcs-bucket-name --year 2022
+    ```
+    *(Requires merged file in GCS, GCS credentials. Outputs to `gs://your-gcs-bucket-name/cleaned/`)*
+
+* **Validate Local Merge:**
+    ```bash
+    python scripts/validate_merge.py --salary data/raw/salary/salary_2022_raw.csv --addendum data/raw/addendum/addendum_2022_raw.csv --merged data/merged_local/merged_salary_2022_uncleaned.csv
+    ```
+    *(Prints validation results)*
+
+* **Validate Merged Files in GCS:**
+    ```bash
+    python scripts/validate_merge_gcs.py --bucket your-gcs-bucket-name
+    ```
+    *(Validates all merged files found in the bucket)*
+
+* **Validate Cleaned Files in GCS (Specific Year):**
+    ```bash
+    python scripts/validate_cleaning_gcs.py --bucket your-gcs-bucket-name --year 2022
+    ```
+    *(Validates the cleaned file against schema expectations)*
+
+### Configuration Details
+
+* **`scripts/url_config.yaml`**: This file is essential for the data ingestion step. It maps each year (as a string) to the direct download URL for the corresponding salary CSV and addendum CSV. Ensure this file is present in the scripts folder.
+* **GCS Bucket Name**: Most `_gcs.py` scripts take a `--bucket` argument, defaulting to `sunshine-list-bucket`. You'll need to either use this default name when creating your bucket (e.g., via Terraform) or pass your specific bucket name when running scripts or configuring Airflow connections/variables.
+* **GCP Credentials**: Scripts interacting with GCS (`upload_raw_to_gcs.py`, `*_gcs.py`, `dbt` and `streamlit_app.py`) rely on Application Default Credentials (ADC). Ensure the `GOOGLE_APPLICATION_CREDENTIALS` environment variable points to your service account key JSON file, or that credentials are otherwise configured correctly in the environment where these scripts run (like the Airflow Docker container).
+
+### Potential Issues & Troubleshooting
+
+* **Missing Addendum**: The scripts handle missing addendum files gracefully (e.g., `merge_addendum.py` just passes the salary file through). Validation steps also account for this.
+* **GCS Permissions**: Ensure the service account used has the necessary permissions (`storage.objects.create`, `storage.objects.get`, `storage.objects.list`) on the target GCS bucket.
+* **Airflow Task Failures**: Check the Airflow logs for the specific failed task. This often reveals issues like incorrect paths, missing credentials, script errors (e.g., a specific file causing a cleaning step to fail), or timeouts.

@@ -28,8 +28,16 @@ venv/
 # ignore service account keys
 *.json
 
-# Airflow logs
-airflow/logs/
+# Airflow runtime files and logs
+airflow/*.log
+airflow/*.out
+airflow/logs/*
+
+
+# You might also want to ignore other common Airflow runtime files
+airflow/airflow-webserver.pid
+airflow/airflow-scheduler.pid
+airflow/unparseable/
 
 # Python cache
 __pycache__/
