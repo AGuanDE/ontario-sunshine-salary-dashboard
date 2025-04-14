@@ -363,7 +363,7 @@ def clean_sunshine_data(input_path: Path, output_dir: Path):
             df = pd.read_csv(
                 input_path,
                 encoding=encoding,
-                engine="python",
+                engine="pyarrow",
                 on_bad_lines="warn",
                 keep_default_na=False,
                 na_values=['']

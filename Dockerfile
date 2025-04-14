@@ -1,5 +1,5 @@
 # docker/Dockerfile
-FROM apache/airflow:2.10.5-python3.8
+FROM apache/airflow:2.10.5-python3.11
 
 USER airflow
 WORKDIR /opt/airflow
@@ -10,7 +10,7 @@ COPY . /opt/airflow
 
 # Set Airflow and Python version dynamically for constraints
 ARG AIRFLOW_VERSION=2.10.5
-ARG PYTHON_VERSION=3.8
+ARG PYTHON_VERSION=3.11
 
 # Define the constraints URL
 # constraint file ensures all packages will be compatible

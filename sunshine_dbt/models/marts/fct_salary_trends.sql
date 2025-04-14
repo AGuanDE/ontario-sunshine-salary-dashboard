@@ -15,7 +15,7 @@ select
     t.*,
     p.dot_com_bubble_burst,
     p.nafta,
-    p .2008 _global_financial_crisis,
+    p.2008_global_financial_crisis,
     p.european_debt_crisis,
     p.covid_19_pandemic,
     p.post_covid_inflation_surge,

@@ -29,8 +29,8 @@ def validate_all_merges(bucket_name):
             continue
         year = year_match.group(1)
 
-        salary_uri = f"gs://{bucket_name}/raw/salaries/sunshine_salaries_{year}.csv"
-        addendum_uri = f"gs://{bucket_name}/raw/addendums/sunshine_addendums_{year}.csv"
+        salary_uri = f"gs://{bucket_name}/raw/salary/sunshine_salary_{year}.csv"
+        addendum_uri = f"gs://{bucket_name}/raw/addendum/sunshine_addendum_{year}.csv"
         merged_uri = f"gs://{bucket_name}/{merged_blob_path}"
 
         try:

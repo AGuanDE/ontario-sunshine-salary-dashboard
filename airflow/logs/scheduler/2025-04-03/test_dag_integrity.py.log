@@ -12648,3 +12648,563 @@
 [2025-04-03T22:57:27.706+0000] {logging_mixin.py:190} INFO - [2025-04-03T22:57:27.705+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
 [2025-04-03T22:57:27.708+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
 [2025-04-03T22:57:27.719+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T22:58:01.276+0000] {processor.py:186} INFO - Started process (PID=91573) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:58:01.278+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T22:58:01.280+0000] {logging_mixin.py:190} INFO - [2025-04-03T22:58:01.279+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:58:01.282+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:58:01.293+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T22:58:33.846+0000] {processor.py:186} INFO - Started process (PID=91615) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:58:33.848+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T22:58:33.850+0000] {logging_mixin.py:190} INFO - [2025-04-03T22:58:33.850+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:58:33.852+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:58:33.864+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T22:59:07.430+0000] {processor.py:186} INFO - Started process (PID=91648) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:59:07.431+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T22:59:07.432+0000] {logging_mixin.py:190} INFO - [2025-04-03T22:59:07.432+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:59:07.434+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:59:07.446+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T22:59:41.004+0000] {processor.py:186} INFO - Started process (PID=91690) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:59:41.007+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T22:59:41.009+0000] {logging_mixin.py:190} INFO - [2025-04-03T22:59:41.008+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:59:41.011+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T22:59:41.022+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:00:14.583+0000] {processor.py:186} INFO - Started process (PID=91723) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:00:14.584+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:00:14.585+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:00:14.585+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:00:14.587+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:00:14.599+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:00:47.145+0000] {processor.py:186} INFO - Started process (PID=91765) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:00:47.147+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:00:47.149+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:00:47.149+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:00:47.151+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:00:47.163+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.024 seconds
+[2025-04-03T23:01:20.729+0000] {processor.py:186} INFO - Started process (PID=91798) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:01:20.731+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:01:20.732+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:01:20.732+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:01:20.734+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:01:20.745+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:01:54.300+0000] {processor.py:186} INFO - Started process (PID=91841) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:01:54.302+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:01:54.303+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:01:54.303+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:01:54.305+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:01:54.316+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:02:27.878+0000] {processor.py:186} INFO - Started process (PID=91874) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:02:27.881+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:02:27.883+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:02:27.882+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:02:27.884+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:02:27.895+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:03:01.457+0000] {processor.py:186} INFO - Started process (PID=91916) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:03:01.458+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:03:01.460+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:03:01.460+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:03:01.462+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:03:01.474+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:03:34.029+0000] {processor.py:186} INFO - Started process (PID=91950) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:03:34.030+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:03:34.032+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:03:34.032+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:03:34.034+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:03:34.045+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.020 seconds
+[2025-04-03T23:04:07.611+0000] {processor.py:186} INFO - Started process (PID=91992) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:04:07.612+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:04:07.614+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:04:07.614+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:04:07.616+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:04:07.627+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:04:41.193+0000] {processor.py:186} INFO - Started process (PID=92026) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:04:41.194+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:04:41.195+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:04:41.195+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:04:41.198+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:04:41.208+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:05:14.811+0000] {processor.py:186} INFO - Started process (PID=92068) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:05:14.812+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:05:14.814+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:05:14.814+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:05:14.816+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:05:14.828+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:05:47.351+0000] {processor.py:186} INFO - Started process (PID=92101) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:05:47.353+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:05:47.355+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:05:47.355+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:05:47.357+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:05:47.369+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:06:20.945+0000] {processor.py:186} INFO - Started process (PID=92144) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:06:20.947+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:06:20.949+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:06:20.948+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:06:20.951+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:06:20.962+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:06:54.531+0000] {processor.py:186} INFO - Started process (PID=92177) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:06:54.534+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:06:54.536+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:06:54.535+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:06:54.537+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:06:54.549+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:07:28.118+0000] {processor.py:186} INFO - Started process (PID=92219) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:07:28.119+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:07:28.121+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:07:28.121+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:07:28.123+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:07:28.134+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:08:00.705+0000] {processor.py:186} INFO - Started process (PID=92252) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:08:00.706+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:08:00.707+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:08:00.707+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:08:00.709+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:08:00.720+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.019 seconds
+[2025-04-03T23:08:34.281+0000] {processor.py:186} INFO - Started process (PID=92294) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:08:34.283+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:08:34.285+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:08:34.285+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:08:34.287+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:08:34.298+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:09:07.859+0000] {processor.py:186} INFO - Started process (PID=92327) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:09:07.861+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:09:07.862+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:09:07.862+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:09:07.864+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:09:07.876+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:09:41.439+0000] {processor.py:186} INFO - Started process (PID=92369) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:09:41.441+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:09:41.443+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:09:41.443+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:09:41.445+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:09:41.456+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:10:14.011+0000] {processor.py:186} INFO - Started process (PID=92402) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:10:14.014+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:10:14.015+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:10:14.015+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:10:14.017+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:10:14.029+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.024 seconds
+[2025-04-03T23:10:47.581+0000] {processor.py:186} INFO - Started process (PID=92444) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:10:47.582+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:10:47.584+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:10:47.584+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:10:47.586+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:10:47.598+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:11:21.168+0000] {processor.py:186} INFO - Started process (PID=92477) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:11:21.169+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:11:21.171+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:11:21.170+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:11:21.173+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:11:21.184+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:11:54.738+0000] {processor.py:186} INFO - Started process (PID=92521) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:11:54.740+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:11:54.742+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:11:54.741+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:11:54.744+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:11:54.756+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:12:27.306+0000] {processor.py:186} INFO - Started process (PID=92554) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:12:27.307+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:12:27.309+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:12:27.309+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:12:27.311+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:12:27.322+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:13:00.886+0000] {processor.py:186} INFO - Started process (PID=92598) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:13:00.889+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:13:00.890+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:13:00.890+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:13:00.892+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:13:00.904+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:13:34.465+0000] {processor.py:186} INFO - Started process (PID=92631) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:13:34.467+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:13:34.468+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:13:34.468+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:13:34.470+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:13:34.482+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:14:08.048+0000] {processor.py:186} INFO - Started process (PID=92673) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:14:08.051+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:14:08.053+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:14:08.053+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:14:08.055+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:14:08.065+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:14:40.627+0000] {processor.py:186} INFO - Started process (PID=92706) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:14:40.628+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:14:40.630+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:14:40.629+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:14:40.632+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:14:40.643+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:15:14.212+0000] {processor.py:186} INFO - Started process (PID=92748) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:15:14.213+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:15:14.214+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:15:14.214+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:15:14.216+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:15:14.228+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:15:47.797+0000] {processor.py:186} INFO - Started process (PID=92781) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:15:47.799+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:15:47.801+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:15:47.801+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:15:47.803+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:15:47.814+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:16:21.390+0000] {processor.py:186} INFO - Started process (PID=92823) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:16:21.392+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:16:21.394+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:16:21.394+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:16:21.396+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:16:21.408+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:16:53.965+0000] {processor.py:186} INFO - Started process (PID=92856) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:16:53.966+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:16:53.969+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:16:53.968+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:16:53.971+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:16:53.983+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:17:27.563+0000] {processor.py:186} INFO - Started process (PID=92898) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:17:27.565+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:17:27.566+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:17:27.566+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:17:27.568+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:17:27.579+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:18:01.132+0000] {processor.py:186} INFO - Started process (PID=92938) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:18:01.134+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:18:01.135+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:18:01.135+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:18:01.137+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:18:01.148+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.020 seconds
+[2025-04-03T23:18:34.708+0000] {processor.py:186} INFO - Started process (PID=92973) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:18:34.709+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:18:34.711+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:18:34.711+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:18:34.713+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:18:34.724+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:19:07.294+0000] {processor.py:186} INFO - Started process (PID=93006) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:19:07.296+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:19:07.298+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:19:07.298+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:19:07.300+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:19:07.311+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:19:40.868+0000] {processor.py:186} INFO - Started process (PID=93048) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:19:40.869+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:19:40.872+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:19:40.871+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:19:40.875+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:19:40.887+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:20:14.449+0000] {processor.py:186} INFO - Started process (PID=93088) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:20:14.450+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:20:14.451+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:20:14.451+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:20:14.453+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:20:14.463+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.020 seconds
+[2025-04-03T23:20:48.019+0000] {processor.py:186} INFO - Started process (PID=93123) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:20:48.021+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:20:48.023+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:20:48.022+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:20:48.025+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:20:48.039+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.027 seconds
+[2025-04-03T23:21:20.609+0000] {processor.py:186} INFO - Started process (PID=93156) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:21:20.612+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:21:20.614+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:21:20.614+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:21:20.617+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:21:20.628+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.025 seconds
+[2025-04-03T23:21:54.189+0000] {processor.py:186} INFO - Started process (PID=93198) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:21:54.191+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:21:54.193+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:21:54.192+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:21:54.194+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:21:54.206+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:22:27.771+0000] {processor.py:186} INFO - Started process (PID=93238) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:22:27.772+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:22:27.774+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:22:27.774+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:22:27.776+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:22:27.785+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.018 seconds
+[2025-04-03T23:23:01.347+0000] {processor.py:186} INFO - Started process (PID=93273) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:23:01.348+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:23:01.349+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:23:01.349+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:23:01.351+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:23:01.363+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:23:34.920+0000] {processor.py:186} INFO - Started process (PID=93314) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:23:34.921+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:23:34.922+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:23:34.922+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:23:34.924+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:23:34.936+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.020 seconds
+[2025-04-03T23:24:07.489+0000] {processor.py:186} INFO - Started process (PID=93348) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:24:07.491+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:24:07.493+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:24:07.493+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:24:07.495+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:24:07.507+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:24:41.069+0000] {processor.py:186} INFO - Started process (PID=93389) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:24:41.070+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:24:41.072+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:24:41.071+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:24:41.073+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:24:41.084+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.019 seconds
+[2025-04-03T23:25:14.644+0000] {processor.py:186} INFO - Started process (PID=93423) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:25:14.646+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:25:14.648+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:25:14.648+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:25:14.650+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:25:14.661+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.024 seconds
+[2025-04-03T23:25:48.226+0000] {processor.py:186} INFO - Started process (PID=93465) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:25:48.227+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:25:48.229+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:25:48.229+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:25:48.231+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:25:48.242+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:26:20.807+0000] {processor.py:186} INFO - Started process (PID=93499) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:26:20.809+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:26:20.810+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:26:20.810+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:26:20.812+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:26:20.824+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:26:54.387+0000] {processor.py:186} INFO - Started process (PID=93540) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:26:54.390+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:26:54.392+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:26:54.392+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:26:54.393+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:26:54.405+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:27:27.966+0000] {processor.py:186} INFO - Started process (PID=93574) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:27:27.967+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:27:27.969+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:27:27.968+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:27:27.971+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:27:27.981+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:28:01.540+0000] {processor.py:186} INFO - Started process (PID=93615) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:28:01.542+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:28:01.544+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:28:01.544+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:28:01.546+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:28:01.559+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.024 seconds
+[2025-04-03T23:28:34.107+0000] {processor.py:186} INFO - Started process (PID=93649) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:28:34.109+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:28:34.110+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:28:34.110+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:28:34.112+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:28:34.124+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:29:07.692+0000] {processor.py:186} INFO - Started process (PID=93690) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:29:07.695+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:29:07.696+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:29:07.696+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:29:07.698+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:29:07.708+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.020 seconds
+[2025-04-03T23:29:41.262+0000] {processor.py:186} INFO - Started process (PID=93724) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:29:41.263+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:29:41.264+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:29:41.264+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:29:41.266+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:29:41.277+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:30:14.851+0000] {processor.py:186} INFO - Started process (PID=93765) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:30:14.852+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:30:14.854+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:30:14.853+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:30:14.855+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:30:14.867+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.020 seconds
+[2025-04-03T23:30:47.432+0000] {processor.py:186} INFO - Started process (PID=93799) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:30:47.433+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:30:47.435+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:30:47.434+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:30:47.437+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:30:47.449+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:31:21.009+0000] {processor.py:186} INFO - Started process (PID=93841) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:31:21.011+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:31:21.013+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:31:21.012+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:31:21.014+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:31:21.025+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:31:54.579+0000] {processor.py:186} INFO - Started process (PID=93875) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:31:54.581+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:31:54.583+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:31:54.582+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:31:54.585+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:31:54.597+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:32:28.157+0000] {processor.py:186} INFO - Started process (PID=93917) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:32:28.158+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:32:28.160+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:32:28.159+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:32:28.161+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:32:28.171+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.018 seconds
+[2025-04-03T23:33:00.732+0000] {processor.py:186} INFO - Started process (PID=93950) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:33:00.733+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:33:00.735+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:33:00.735+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:33:00.737+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:33:00.749+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.024 seconds
+[2025-04-03T23:33:34.322+0000] {processor.py:186} INFO - Started process (PID=93991) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:33:34.322+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:33:34.323+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:33:34.323+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:33:34.327+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:33:34.338+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:34:07.892+0000] {processor.py:186} INFO - Started process (PID=94025) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:34:07.893+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:34:07.895+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:34:07.895+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:34:07.897+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:34:07.909+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:34:41.479+0000] {processor.py:186} INFO - Started process (PID=94067) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:34:41.481+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:34:41.483+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:34:41.482+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:34:41.484+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:34:41.495+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.020 seconds
+[2025-04-03T23:35:14.052+0000] {processor.py:186} INFO - Started process (PID=94100) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:35:14.053+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:35:14.055+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:35:14.055+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:35:14.057+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:35:14.070+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:35:47.638+0000] {processor.py:186} INFO - Started process (PID=94141) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:35:47.641+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:35:47.643+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:35:47.642+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:35:47.644+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:35:47.656+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:36:21.220+0000] {processor.py:186} INFO - Started process (PID=94175) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:36:21.223+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:36:21.224+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:36:21.224+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:36:21.226+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:36:21.238+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:36:54.805+0000] {processor.py:186} INFO - Started process (PID=94217) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:36:54.807+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:36:54.809+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:36:54.809+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:36:54.811+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:36:54.822+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:37:27.384+0000] {processor.py:186} INFO - Started process (PID=94250) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:37:27.386+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:37:27.388+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:37:27.387+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:37:27.390+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:37:27.401+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:38:00.968+0000] {processor.py:186} INFO - Started process (PID=94291) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:38:00.970+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:38:00.972+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:38:00.972+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:38:00.974+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:38:00.984+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.020 seconds
+[2025-04-03T23:38:34.543+0000] {processor.py:186} INFO - Started process (PID=94325) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:38:34.544+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:38:34.546+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:38:34.546+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:38:34.548+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:38:34.560+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:39:08.121+0000] {processor.py:186} INFO - Started process (PID=94367) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:39:08.123+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:39:08.124+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:39:08.124+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:39:08.126+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:39:08.136+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.020 seconds
+[2025-04-03T23:39:41.700+0000] {processor.py:186} INFO - Started process (PID=94400) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:39:41.702+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:39:41.704+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:39:41.704+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:39:41.706+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:39:41.718+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.024 seconds
+[2025-04-03T23:40:14.279+0000] {processor.py:186} INFO - Started process (PID=94441) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:40:14.281+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:40:14.283+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:40:14.283+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:40:14.284+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:40:14.294+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:40:47.851+0000] {processor.py:186} INFO - Started process (PID=94476) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:40:47.852+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:40:47.854+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:40:47.853+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:40:47.856+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:40:47.867+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:41:21.442+0000] {processor.py:186} INFO - Started process (PID=94519) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:41:21.444+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:41:21.445+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:41:21.445+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:41:21.448+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:41:21.458+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:41:55.017+0000] {processor.py:186} INFO - Started process (PID=94552) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:41:55.017+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:41:55.019+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:41:55.019+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:41:55.021+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:41:55.033+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:42:27.597+0000] {processor.py:186} INFO - Started process (PID=94594) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:42:27.599+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:42:27.601+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:42:27.601+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:42:27.603+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:42:27.614+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:43:01.170+0000] {processor.py:186} INFO - Started process (PID=94628) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:43:01.173+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:43:01.174+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:43:01.174+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:43:01.176+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:43:01.187+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:43:34.749+0000] {processor.py:186} INFO - Started process (PID=94670) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:43:34.752+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:43:34.753+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:43:34.753+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:43:34.755+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:43:34.767+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:44:08.331+0000] {processor.py:186} INFO - Started process (PID=94703) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:44:08.332+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:44:08.334+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:44:08.334+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:44:08.336+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:44:08.347+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:44:40.901+0000] {processor.py:186} INFO - Started process (PID=94745) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:44:40.902+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:44:40.904+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:44:40.903+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:44:40.905+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:44:40.916+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.020 seconds
+[2025-04-03T23:45:14.477+0000] {processor.py:186} INFO - Started process (PID=94778) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:45:14.478+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:45:14.479+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:45:14.479+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:45:14.481+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:45:14.492+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:45:48.061+0000] {processor.py:186} INFO - Started process (PID=94820) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:45:48.063+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:45:48.065+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:45:48.065+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:45:48.067+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:45:48.078+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:46:21.648+0000] {processor.py:186} INFO - Started process (PID=94853) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:46:21.650+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:46:21.652+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:46:21.652+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:46:21.654+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:46:21.666+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:46:54.226+0000] {processor.py:186} INFO - Started process (PID=94895) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:46:54.227+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:46:54.228+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:46:54.228+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:46:54.230+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:46:54.241+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:47:27.802+0000] {processor.py:186} INFO - Started process (PID=94929) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:47:27.803+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:47:27.804+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:47:27.804+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:47:27.806+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:47:27.818+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:48:01.381+0000] {processor.py:186} INFO - Started process (PID=94972) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:48:01.382+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:48:01.384+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:48:01.384+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:48:01.386+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:48:01.399+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:48:34.969+0000] {processor.py:186} INFO - Started process (PID=95006) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:48:34.970+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:48:34.971+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:48:34.971+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:48:34.973+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:48:34.985+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:49:07.553+0000] {processor.py:186} INFO - Started process (PID=95048) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:49:07.555+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:49:07.557+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:49:07.556+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:49:07.558+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:49:07.569+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:49:41.128+0000] {processor.py:186} INFO - Started process (PID=95081) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:49:41.129+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:49:41.130+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:49:41.130+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:49:41.132+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:49:41.144+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:50:14.703+0000] {processor.py:186} INFO - Started process (PID=95124) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:50:14.705+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:50:14.707+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:50:14.707+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:50:14.709+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:50:14.720+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:50:48.281+0000] {processor.py:186} INFO - Started process (PID=95157) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:50:48.283+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:50:48.285+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:50:48.285+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:50:48.287+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:50:48.299+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.024 seconds
+[2025-04-03T23:51:20.856+0000] {processor.py:186} INFO - Started process (PID=95200) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:51:20.857+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:51:20.859+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:51:20.859+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:51:20.860+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:51:20.871+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.019 seconds
+[2025-04-03T23:51:54.427+0000] {processor.py:186} INFO - Started process (PID=95233) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:51:54.429+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:51:54.430+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:51:54.430+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:51:54.432+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:51:54.444+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:52:28.008+0000] {processor.py:186} INFO - Started process (PID=95276) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:52:28.009+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:52:28.011+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:52:28.010+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:52:28.013+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:52:28.025+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:53:01.584+0000] {processor.py:186} INFO - Started process (PID=95309) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:53:01.585+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:53:01.587+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:53:01.586+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:53:01.589+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:53:01.601+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:53:34.160+0000] {processor.py:186} INFO - Started process (PID=95351) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:53:34.161+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:53:34.162+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:53:34.162+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:53:34.164+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:53:34.176+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:54:07.733+0000] {processor.py:186} INFO - Started process (PID=95384) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:54:07.735+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:54:07.737+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:54:07.737+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:54:07.739+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:54:07.750+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:54:41.317+0000] {processor.py:186} INFO - Started process (PID=95426) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:54:41.318+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:54:41.319+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:54:41.319+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:54:41.322+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:54:41.334+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:55:14.904+0000] {processor.py:186} INFO - Started process (PID=95459) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:55:14.905+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:55:14.907+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:55:14.907+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:55:14.909+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:55:14.920+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:55:48.494+0000] {processor.py:186} INFO - Started process (PID=95501) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:55:48.497+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:55:48.498+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:55:48.498+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:55:48.500+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:55:48.512+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.024 seconds
+[2025-04-03T23:56:21.077+0000] {processor.py:186} INFO - Started process (PID=95535) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:56:21.079+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:56:21.081+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:56:21.081+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:56:21.083+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:56:21.095+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:56:54.665+0000] {processor.py:186} INFO - Started process (PID=95577) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:56:54.666+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:56:54.668+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:56:54.667+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:56:54.670+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:56:54.681+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.021 seconds
+[2025-04-03T23:57:28.249+0000] {processor.py:186} INFO - Started process (PID=95610) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:57:28.250+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:57:28.253+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:57:28.252+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:57:28.255+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:57:28.267+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:58:01.835+0000] {processor.py:186} INFO - Started process (PID=95653) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:58:01.838+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:58:01.840+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:58:01.840+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:58:01.842+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:58:01.854+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:58:34.418+0000] {processor.py:186} INFO - Started process (PID=95686) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:58:34.419+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:58:34.421+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:58:34.420+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:58:34.423+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:58:34.435+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.023 seconds
+[2025-04-03T23:59:07.999+0000] {processor.py:186} INFO - Started process (PID=95728) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:59:08.000+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:59:08.002+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:59:08.001+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:59:08.004+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:59:08.016+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.022 seconds
+[2025-04-03T23:59:41.572+0000] {processor.py:186} INFO - Started process (PID=95761) to work on /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:59:41.574+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/test_dag_integrity.py for tasks to queue
+[2025-04-03T23:59:41.576+0000] {logging_mixin.py:190} INFO - [2025-04-03T23:59:41.576+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:59:41.578+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/test_dag_integrity.py
+[2025-04-03T23:59:41.590+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/test_dag_integrity.py took 0.024 seconds

@@ -6,7 +6,6 @@ x-airflow-common:
     AIRFLOW_UID: ${AIRFLOW_UID}
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-    # AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
@@ -86,6 +85,29 @@ services:
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+
+  dbt-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.dbt
+    volumes:
+      - ./sunshine_dbt:/app # Mount your dbt project directory
+      - ~/.dbt/profiles.yml:/root/.dbt/profiles.yml # Mount local profiles.yml
+      - ./ontario-sunshine-service-account.json:/home/aguan/ontario-sunshine-salary-dashboard/ontario-sunshine-service-account.json
+    environment:
+      DBT_PROFILES_DIR: /root/.dbt # Point to mounted local directory
+      GOOGLE_APPLICATION_CREDENTIALS: /home/aguan/ontario-sunshine-salary-dashboard/ontario-sunshine-service-account.json
+    entrypoint: []
+    command: >
+      sh -c "echo 'Starting dbt deps' &&
+      dbt deps &&
+      echo 'Deps complete' &&
+      echo 'Starting dbt seed' &&
+      dbt seed &&
+      echo 'Seed complete' &&
+      echo 'Starting dbt run' &&
+      dbt run"
+
 
 volumes:
   postgres-db-volume:

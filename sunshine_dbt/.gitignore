@@ -3,4 +3,17 @@ target/
 dbt_packages/
 logs/
 
+airflow/logs/
 *.json
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+*.venv/
+
+# dbt compiled artifacts
+sunshine_dbt/target/
+sunshine_dbt/dbt_packages/

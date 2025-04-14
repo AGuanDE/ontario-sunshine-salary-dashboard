@@ -14,7 +14,7 @@ st.title("Ontario Sunshine List")
 st.write("""
 Welcome to the Ontario Sunshine List Insights Dashboard — an interactive tool for exploring Ontario Public Sector Salary Disclosure data, commonly referred to as the 'Sunshine List.'
 
-Ontario's Public Sector Salary Disclosure Act, commonly known as the "Sunshine List", requires organizations receiving significant public funding to annually disclose the names, positions, salaries, and total taxable benefits of employees earning $100,000 or more.
+The Sunshine List requires organizations receiving significant public funding to annually disclose the names, positions, salaries, and total taxable benefits of employees earning $100,000 or more.
 This dashboard is designed to provide a comprehensive analysis of high earners, compensation trends, and employment patterns across various sectors government ministries, Crown agencies, municipalities, hospitals, school boards, universities, colleges, and other publicly funded organizations.
 """)
 
@@ -22,7 +22,7 @@ This dashboard is designed to provide a comprehensive analysis of high earners, 
 
 st.header("Overall Salary Trends")
 st.write("""
-View the overall trend in average and median salaries from 1966 till present.
+View the overall trend in average and median salaries from 1996 till present.
 """)
 
 query_salary_trends = """

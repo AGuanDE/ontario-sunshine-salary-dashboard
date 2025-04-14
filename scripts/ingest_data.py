@@ -38,8 +38,19 @@ def download_file(url: str, local_path: Path):
     """
     Download the file from the URL and save it to local path.
     """
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "en-CA,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Referer": "https://data.ontario.ca/en/dataset/public-sector-salary-disclosure-1996/resource/ed43dcd3-6c33-47b6-bc71-e94be3ce6dc0",
+        "Upgrade-Insecure-Requests": "1",
+        "DNT": "1",
+        "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+        "sec-ch-ua-platform": "\"Windows\"",
+    }
     print(f"Downloading file from {url}")
-    response = requests.get(url, timeout=15)
+    response = requests.get(url, timeout=15, headers=headers)
     if response.status_code == 200:
         with open(local_path, "wb") as f:
             f.write(response.content)
@@ -47,20 +58,20 @@ def download_file(url: str, local_path: Path):
     else:
         raise Exception(f"Failed to download file from {url}. Status code: {response.status_code}")
 
-def main():
+def main(): 
     parser = argparse.ArgumentParser(
         description="Download salary and addendum files for a given year"
     )
     parser.add_argument(
         "--year",
         type=str,
-        required=True,
+        default="1996",
         help="Year of data to ingest (YYYY)"
     )
     parser.add_argument(
         "--config",
         type=Path,
-        default=Path("scripts/url_config.yaml"),
+        default=Path(__file__).parent / "url_config.yaml", # url_config.yaml must be in the same directory as ingest_data.py.
         help="Path to the url_config.yaml config file (I saved it in the scripts directory)"
     )
     args = parser.parse_args()
@@ -73,10 +84,15 @@ def main():
         addendum_urls = config.get("addendum_urls", {})
 
         # Define directories
-        salary_raw_dir = Path("data/raw/salary")
-        addendum_raw_dir = Path("data/raw/addendum")
+        salary_raw_dir = Path("/home/aguan/ontario-sunshine-salary-dashboard/data/raw/salary")
+        addendum_raw_dir = Path("/home/aguan/ontario-sunshine-salary-dashboard/data/raw/addendum")
         salary_raw_dir.mkdir(parents=True, exist_ok=True)
         addendum_raw_dir.mkdir(parents=True, exist_ok=True)
+
+        print("Starting ingest_data.py with year:", year)
+        print("Current working directory:", Path.cwd())
+        print("Salary file will be saved to:", (salary_raw_dir / f"salary_{year}_raw.csv").resolve())
+        print("Addendum file will be saved to:", (addendum_raw_dir / f"addendum_{year}_raw.csv").resolve())
 
         # Get URL for year with error handling
         try:

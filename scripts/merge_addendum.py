@@ -41,7 +41,7 @@ def load_csv_with_encoding(file_path: Path):
     encodings = ['utf-8', 'utf-8-sig', 'iso-8859-1', 'cp1252']
     for encoding in encodings:
         try:
-            return pd.read_csv(file_path, encoding=encoding, keep_default_na=False, na_values=[''])
+            return pd.read_csv(file_path, encoding=encoding, engine="pyarrow", on_bad_lines="warn", keep_default_na=False, na_values=[''])
         except UnicodeDecodeError:
             pass
     raise ValueError(f"Could not read file {file_path} with any of the attempted encodings: {encodings}")

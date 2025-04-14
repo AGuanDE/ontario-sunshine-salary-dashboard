@@ -1,4 +1,4 @@
-sunshine_dbt_venv/
+# raw files
 data/
 
 # Terraform state
@@ -20,5 +20,21 @@ terraform.tfstate.backup
 # Environment variables
 .env
 
+# Virtual environments
+sunshine_dbt_venv/
+venv/
+*.venv/
+
 # ignore service account keys
 *.json
+
+# Airflow logs
+airflow/logs/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# dbt compiled artifacts
+sunshine_dbt/target/
+sunshine_dbt/dbt_packages/

@@ -9,15 +9,15 @@ resource "google_project_service" "bigquery" {
   disable_on_destroy = false
 }
 
-# Storage bucket (matches existing configuration)
+# Storage bucket
 resource "google_storage_bucket" "data_bucket" {
   name          = "sunshine-list-bucket"
   location      = var.region
   storage_class = var.gsc_storage_class
-  force_destroy = false # Keep versioning behavior as-is
+  force_destroy = false
 
   versioning {
-    enabled = true # Soft delete behavior
+    enabled = true
   }
 
   uniform_bucket_level_access = true
@@ -27,19 +27,30 @@ resource "google_storage_bucket" "data_bucket" {
       type = "Delete"
     }
     condition {
-      age = 365 # Optional: delete versions older than 1 year
+      age = 365
     }
   }
 
   depends_on = [google_project_service.storage]
 }
 
-# BigQuery dataset
-resource "google_bigquery_dataset" "dataset" {
-  dataset_id    = "sunshine_clean"
-  friendly_name = "Sunshine Clean Data"
-  description   = "Cleaned and normalized Ontario Sunshine List data"
+# Raw/Staging dataset (where your source CSVs or ingestion land)
+resource "google_bigquery_dataset" "staging" {
+  dataset_id    = "ontario_sunshine_dataset"     # matches schema.yml source.schema
+  friendly_name = "Ontario Sunshine Raw Data"
+  description   = "Raw staging data for Sunshine List"
   location      = var.region
 
   depends_on = [google_project_service.bigquery]
 }
+
+# DBT development dataset (where dbt writes models)
+resource "google_bigquery_dataset" "dbt_dev" {
+  dataset_id    = "sunshine_dbt_dev_dataset"     # matches your UI
+  friendly_name = "Sunshine DBT Dev Dataset"
+  description   = "DBT development dataset for Sunshine List"
+  location      = var.region
+
+  depends_on = [google_project_service.bigquery]
+}
+
