@@ -18,6 +18,10 @@ with DAG(
     max_active_runs=16,
 ) as dag:
 
+    # you can create a Variable in the Airflow UI named project_root. this variable corresponds to where the scripts are found
+    # Its value should correspond to where the scripts are inside the container. Given the volume mount (- ./scripts:/opt/scripts), you should set the project_root variable's value to /opt
+    # alternatively, you can replace it with the absolute path: bash_command='python /opt/scripts/ingest_data.py --year {{ execution_date.year }}'
+
     ingest = BashOperator(
         task_id='ingest_data_task',
         bash_command=(
