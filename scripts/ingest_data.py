@@ -74,6 +74,12 @@ def main():
         default=Path(__file__).parent / "url_config.yaml", # url_config.yaml must be in the same directory as ingest_data.py.
         help="Path to the url_config.yaml config file (I saved it in the scripts directory)"
     )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=Path("/opt/airflow/data/raw"),
+        help="Directory inside container to save raw files"
+    )
     args = parser.parse_args()
     year = args.year
 
@@ -84,8 +90,8 @@ def main():
         addendum_urls = config.get("addendum_urls", {})
 
         # Define directories
-        salary_raw_dir = Path("/home/aguan/ontario-sunshine-salary-dashboard/data/raw/salary")
-        addendum_raw_dir = Path("/home/aguan/ontario-sunshine-salary-dashboard/data/raw/addendum")
+        salary_raw_dir = args.output_dir / "salary"
+        addendum_raw_dir = args.output_dir / "addendum"
         salary_raw_dir.mkdir(parents=True, exist_ok=True)
         addendum_raw_dir.mkdir(parents=True, exist_ok=True)
 

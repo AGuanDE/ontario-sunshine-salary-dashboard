@@ -32,13 +32,13 @@ Before you begin, make sure you have the following:
 > ``` 
 > This ensures that files created by Airflow containers are owned by your user and not root ([Running Airflow in Docker — Airflow Documentation](https://airflow.apache.org/docs/apache-airflow/2.5.0/howto/docker-compose/index.html#:~:text=On%20Linux%2C%20the%20quick,compose)) ([Running Airflow in Docker — Airflow Documentation](https://airflow.apache.org/docs/apache-airflow/2.5.0/howto/docker-compose/index.html#:~:text=For%20other%20operating%20systems%2C%20you,get%20rid%20of%20the%20warning)).
 
-## Running the Project Locally (Docker Compose)
+## Running the Project (Docker Compose)
 
 Follow these steps to set up and run the data pipeline on your local machine using Docker:
 
 1. **Clone the repository.** Clone the project repository to your local machine and navigate into it.  
    ```bash
-   git clone https://github.com/<your-username>/ontario-sunshine-salary-dashboard.git  
+   git clone https://github.com/AGuanDE/ontario-sunshine-salary-dashboard.git  
    cd ontario-sunshine-salary-dashboard
    ```  
    All subsequent commands should be run from the project’s root directory.
@@ -47,7 +47,7 @@ Follow these steps to set up and run the data pipeline on your local machine usi
    ```bash
    docker compose up airflow-init
    ```  
-   This one-time setup will migrate the Airflow database and create the default admin account. You should see a message like *"Admin user airflow created"* when it's done. If you need to create a user manually, you can run:
+   This one-time setup will migrate the Airflow database and create the default admin account. You should see a message like *"Admin user admin created"* when it's done. If you need to create a user manually, you can run:
    
    ```bash
    airflow users create \
@@ -61,25 +61,25 @@ Follow these steps to set up and run the data pipeline on your local machine usi
    
    Next, launch the Airflow scheduler and webserver (in detached mode so it runs in the background):  
    ```bash
-   docker compose up -d
+   docker compose build && docker compose up
    ```  
    This command starts all Airflow services (web server on port 8080, scheduler, and database). Give it a few moments to fully start. You can check container status with `docker compose ps` or `docker ps` to ensure they are healthy. 
 
-   Once Airflow is running, open your browser to **`http://localhost:8080`** to access the Airflow UI. Log in with the default credentials **username:** `airflow` / **password:** `airflow` (these were created during the init step ([Running Airflow in Docker — Airflow Documentation](https://airflow.apache.org/docs/apache-airflow/2.5.0/howto/docker-compose/index.html#:~:text=The%20account%20created%20has%20the,airflow))). In the Airflow UI, you should see a DAG called **`data_ingestion_dag`** (it may be in a paused state initially). 
+   Once Airflow is running, open your browser to **`http://localhost:8080`** to access the Airflow UI. Log in with the default credentials **username:** `admin` / **password:** `admin` (these were created during the init step). In the Airflow UI, you should see a DAG called **`data_ingestion_dag`**. 
 
-   **Trigger the DAG:** Turn on (unpause) the **`data_ingestion_dag`** by toggling the switch next to it, and then trigger a run (you can click the play button ► or simply unpausing may trigger it if catchup is enabled). This DAG will now start executing the pipeline tasks for each year of data from 1996 onward. The tasks include: downloading the Sunshine List salary data and addendum data (outlines additions, deletions and changes that need to be made to the salary data)for the year, uploading the raw data file to Google Cloud Storage (GCS), merging (which just changes the salary data based on the addendum file), validating the merge, cleaning the combined dataset, and validating the cleaned data.
+   **Trigger the DAG:** the **`data_ingestion_dag`** should automatically trigger a run & will now start executing the pipeline tasks for each year of data from 1996 onward. The tasks include: downloading the Sunshine List salary data and addendum data (outlines additions, deletions and changes that need to be made to the salary data) for the year, uploading the raw data file to Google Cloud Storage (GCS), merging (which just changes the salary data based on the addendum file), validating the merge, cleaning the combined dataset, and validating the cleaned data.
 
-   🕒 **Wait for completion:** The full pipeline (1996 up to the latest year) will take a few minutes to complete, since it is processing multiple years of data. You can monitor progress in the Airflow UI’s **Graph** or **Tree** view. Each year’s run will execute the chain of tasks one after another. Wait until all tasks across all years show a success status (green) before moving to the next step. The DAG is designed with catch-up enabled, so it will automatically run for each year up to the current year.
+   🕒 **Wait for completion:** The full pipeline (1996 up to the latest year) will take a few minutes to complete, since it is processing multiple years of data. You can monitor progress in the Airflow UI’s **Graph** or **Tree** view. Each year’s run will execute the chain of tasks one after another and 16 years will run simultaneously. Wait until all tasks across all years show a success status (green) before moving to the next step. The DAG is designed with catch-up enabled, so it will automatically run for each year up to the current year.
 
-3.  **The dbt models will run after.** After Airflow has finished ingesting and processing the data, it will trigger the 'trigger_dbt_runner' task which will spin up another docker container to run the dbt models (dbt runs in a separate container due to dependency conflicts with Airflow i.e. dbt-core).
+3.  **Run dbt models** After Airflow has finished ingesting and processing the data, run the dbt models in dbt cloud. Unfortunately I wasn't able to get airflow to run the dbt models given some issues with dependency conflicts between airflow and dbt-core and giving the airflow docker user access to the docker daemon. If anyone knows how to do this properly, please let me know!
 
-    The primary dbt model (`models/staging/stg_salary_canon.sql`) processes the cleaned data and materializes it as a table in your data warehouse (e.g., BigQuery). To optimize query performance and reduce costs for downstream analysis (like in the Streamlit app), this table is explicitly configured with:
+    The primary dbt model (`models/staging/stg_salary_canon.sql`) processes the cleaned data and materializes it as a table in your data warehouse (e.g., BigQuery). To optimize query performance and reduce costs for downstream analysis (like in the Streamlit app), this table is configured with:
     * **Partitioning:** The table is partitioned by the `calendar_year` column 
     * **Clustering:** Within each partition, the data is clustered by the `job_title` and `sector` columns.
 
     Once the dbt models are successfully built with these optimizations, the final tables are ready for visualization.
 
-4. **Launch the Streamlit app.** Finally, you can run the Streamlit app to visualize the data. The Streamlit application will query the processed data (from BigQuery) and provide an interactive dashboard for the Sunshine List. To start the app, run:  
+4. **Launch the Streamlit app.** Finally, you can run the streamlit_app.py to visualize the data. The Streamlit application will query the processed data (from BigQuery) and provide an interactive dashboard for the Sunshine List. To start the app, run:  
    ```bash
    streamlit run streamlit_app.py
    ```  

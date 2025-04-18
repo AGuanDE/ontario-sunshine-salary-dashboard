@@ -29,15 +29,15 @@ venv/
 *.json
 
 # Airflow runtime files and logs
-airflow/*.log
-airflow/*.out
-airflow/logs/*
+airflow_proj/*.log
+airflow_proj/*.out
+airflow_proj/logs/*
 
 
 # You might also want to ignore other common Airflow runtime files
-airflow/airflow-webserver.pid
-airflow/airflow-scheduler.pid
-airflow/unparseable/
+airflow_proj/airflow-webserver.pid
+airflow_proj/airflow-scheduler.pid
+airflow_proj/unparseable/
 
 # Python cache
 __pycache__/

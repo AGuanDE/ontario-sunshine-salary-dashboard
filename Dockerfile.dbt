@@ -4,14 +4,7 @@ FROM python:3.9-slim
 # Set a working directory
 WORKDIR /app
 
-# Create the directory to mimic the local path to find service acc json
-RUN mkdir -p /home/aguan/ontario-sunshine-salary-dashboard
-
 # Install dbt core and any specific adapters you need (for example, dbt-postgres)
-RUN pip install dbt-core dbt-bigquery
+RUN pip install --no-cache-dir dbt-core dbt-bigquery
 
-# Copy your dbt project into the image
-COPY ./sunshine_dbt /app/sunshine_dbt
-
-# Set the entrypoint to run dbt commands
-ENTRYPOINT ["dbt"]
+WORKDIR /app/sunshine_dbt

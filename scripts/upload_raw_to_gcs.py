@@ -1,6 +1,7 @@
 # scripts/upload_raw_to_gcs.py
 
 from google.cloud import storage
+from google.api_core.exceptions import TooManyRequests
 from pathlib import Path
 import re
 import argparse
@@ -17,8 +18,28 @@ def upload_to_gcs(bucket_name: str, source_file_path: str, destination_blob_name
     client = storage.Client()
     bucket = client.bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
-    blob.upload_from_filename(source_file_path)
-    print(f"✅ Uploaded {source_file_path} to gs://{bucket_name}/{destination_blob_name}")
+    
+    # sometimes GCS will raise a ratelimit issue, this checks if the file was actually uploaded and marks 
+    # the airflow tasks as successful so the next task can run
+    try:
+        print(f"⬆️ Uploading {source_file_path} to gs://{bucket_name}/{destination_blob_name}")
+        blob.upload_from_filename(source_file_path)
+        print(f"✅ Uploaded {source_file_path} to gs://{bucket_name}/{destination_blob_name}")
+
+    except TooManyRequests as e:
+        print(f"⚠️ Rate limit error during upload: {e}")
+        print("🔎 Verifying if the object was uploaded anyway...")
+
+        # Check if object exists despite the 429 error
+        if blob.exists():
+            print("✅ Upload actually succeeded. Continuing task...")
+        else:
+            print("❌ Upload failed and object does not exist in GCS.")
+            raise  # re-raise the exception to mark the task as failed
+
+    except Exception as e:
+        print(f"❌ Unexpected error during upload: {e}")
+        raise
 
 def standardize_and_upload(folder: Path, category: str, bucket_name: str, target_year: str = None):
     print(f"\nScanning {category} folder: {folder.resolve()}")
